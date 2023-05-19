@@ -41,46 +41,58 @@ const Footer = (props: any) => {
 
 	return (
 		<>
-			<footer className="site-footer  inline-block">
-				<div className="container inline-block">
-					<div className="footer-menu-heading flex space-x-36">
-						{props?._site?.c_footerMenus?.map((link: any, i: any) => (
-							<>
-								<div>
-									<h5 className="">{link.footerMenuHeading}</h5>
-									<ul className="footer-menu-list">
-										{link.footermenulist.map((element: any, i: any) => (
-											<li>
-												<a href={element.link}>{element.label}</a>
-											</li>
-										))}
+			<footer className="site-footer inline-block">
+				<div className="main-footer">
+					<div className="container inline-block">
+						<div className="footer-menu-heading flex space-x-24">
+							{props?._site?.c_footerMenus?.map((link: any, i: any) => (
+								<>
+									<div>
+										<h5 className="">{link.footerMenuHeading}</h5>
+										<ul className="footer-menu-list">
+											{link.footermenulist.map((element: any, i: any) => (
+												<li>
+													<a href={element.link}>{element.label}</a>
+												</li>
+											))}
+										</ul>
+									</div>
+								</>
+							))
+							}
+						</div>
+						<div className="bottom-sec-footer w-full ">
+							<div className="footer-icon-copyrights flex">
+								<div className="link-footer-block">
+									<ul className="social-media-bx flex space-x-6">
+										{props?._site?.c_socialMediaIcon?.map((icon: any) => {
+											return (
+												<>
+													<li className="">
+														<a href={icon.link} target="_blank">
+															<img src={icon.url}  alt="social" className="inline-block " />
+														</a>
+													</li>
+												</>
+											)
+										})}
 									</ul>
 								</div>
-							</>
-						))
-						}
-					</div>
-
-					<div className="link-sec-footer ">
-						<div className="footer-block">
-							<ul className="social-media-bx">
-								{props?._site?.c_socialMediaIcon?.map((icon: any) => {
-									return (
-										<>
-											<li className="">
-												<a href={icon.link} target="_blank">
-													<img src={icon.url} height="20" alt="social" width="21" className="inline-block w-5 h-auto" />
-												</a>
-											</li>
-										</>
-									)
-								})}
-							</ul>
+								<div className="copyright-bx flex">
+									<p>{props?._site?.c_ussRights?.unitedReserveText}</p>
+									{props?._site?.c_ussRights?.privacyCookie?.map((element: any, i: any) => (
+										<a href={element.link} >| {element.label} |</a>
+									))}
+									<p>{props?._site?.c_ussRights?.otherText}</p>
+								</div>
+							</div>
+							<div className="footer-text-sec">
+								<p className="footer-description copyright-bx">
+									{props?._site?.c_footerDescription}
+								</p>
+							</div>
 						</div>
 					</div>
-					<div className="copyright-bx">
-					</div>
-
 				</div>
 			</footer>
 			<CookieConsent

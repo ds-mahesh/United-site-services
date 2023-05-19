@@ -11,7 +11,9 @@
       "c_coustomerCareNumber",
       "c_footerMenus",
       "c_socialMediaIcon",
-      "c_locatorbanner"
+      "c_locatorbanner",
+      "c_ussRights",
+      "c_footerDescription"
 
   ],
   "localization": {

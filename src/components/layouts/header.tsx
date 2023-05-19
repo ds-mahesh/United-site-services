@@ -15,29 +15,29 @@ const Header = (props: any) => {
     </li>
   ));
 
-  // const Titlemenu = props?._site?.c_titleMenu?.map((link: any,i:any) => (
-  //   <a key={i} href="">
-  //     <img src={link.titleLogo?.url} alt={''} />
-  //     <span>{link.titleLabel.label}</span>
-  //   </a>
-  // ));
-
   return (
     <>
       <div className="header">
-        {/* <div className="titlemenu">
-          {Titlemenu}
-        </div> */}
-        <div className="Header-data flex">
-          <div className="logo"><a><img className="United-services-logo" src="https://www.unitedsiteservices.com/wp-content/themes/united-site-services/library/img/logo.png" alt={''} /></a></div>
+        <div className="header-data flex">
+          <div className="logo"><a><img className="United-services-logo" src={props?._site?.logo?.image?.url} alt={''} /></a></div>
           <div className="headermenu">
             <ul className="menulist flex ">
               {Headermenus}
             </ul>
           </div>
-          <div className="coustomer-care-contect flex space-x-2">
-            <img src={props?._site?.c_coustomerCareNumber?.phoneicon?.url} alt={''} height="20" width="20" />
-            <span>{props?._site?.c_coustomerCareNumber?.number}</span>
+          <div className="main-header-search">
+            <div className="head-search-bar flex space-x-1">
+              <img src="https://purepng.com/public/uploads/medium/search-icon-sl7.png" alt={''} height="20" width="20" />
+              <input type="text" />
+            </div>
+          </div>
+          <div className="contect-number">
+            <div className="coustomer-care-contect ">
+              <a className="flex space-x-2" href={props?._site?.c_coustomerCareNumber?.number?.link}>
+                <img src={props?._site?.c_coustomerCareNumber?.phoneicon?.url} alt={''} height="20" width="20" />
+                <p>{props?._site?.c_coustomerCareNumber?.number?.label}</p>
+              </a>
+            </div>
           </div>
         </div>
       </div >

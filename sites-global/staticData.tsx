@@ -8,7 +8,7 @@ export const StaticData = {
     Brandname:"MGM Timber",
     miles:"miles",
     tempClosed:"Temporarily Closed",
-    StoreDetailbtn:"View Store Detail",
+    StoreDetailbtn:"Branch Details",
     Storehighlight:"Store Highlights",
     Days:"Days",
     Hours:"Hours",

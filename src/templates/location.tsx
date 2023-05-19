@@ -440,7 +440,7 @@ breadcrumbScheme.push({
       >
         {" "}
         <AnalyticsScopeProvider name={""}>
-      <PageLayout global={_site}>
+      <PageLayout _site={_site}>
 
 
       <div className="container">
