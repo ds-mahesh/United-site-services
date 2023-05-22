@@ -143,7 +143,7 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
       type: "meta",
       attributes: {
         name: "twitter:title",
-        content: `${document.c_meta_title?document.c_meta_title:`Timber Merchants Near Me - Find MGM Timber Branch Locator Here.`}`,
+        content: `${document.c_meta_title?document.c_meta_title:`United Site Services Near Me - Find United Site Services Branch Branch Locator Here.`}`,
       },
     },
     {
