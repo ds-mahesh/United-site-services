@@ -47,7 +47,7 @@ const LocationCard: CardComponent<Location> = ({ result }) => {
     }
   }
 
-  const { address, hours, mainPhone, c_hoursAmenities } = result.rawData;
+  const { address, hours, mainPhone,c_getQuote} = result.rawData;
   //     var name: any = result.rawData.name?.toLowerCase();
   //   var region: any = result.rawData.address.region?.toLowerCase();
   //   var initialregion: any = region.toString();
@@ -102,8 +102,8 @@ const LocationCard: CardComponent<Location> = ({ result }) => {
                 <div className="contectnumber"><span> {mainPhone}</span></div>
               </div>
               {result.rawData.hours ? <>
-                <div className="mt-2">
-                  <div className="hours-services">
+                <div className="mt-2 hours-sec-card">
+                  <div className="hours-services flex">
                     {result.rawData.hours?.reopenDate ? <>
                       <div className="icon"> <img className=" " src={timesvg} width="20" height="20" alt="" /> </div>
                       <div className=" flex open-now-string items-center " data-id={`main-shop-${result.rawData.id}`} onClick={opentime}>
@@ -112,7 +112,11 @@ const LocationCard: CardComponent<Location> = ({ result }) => {
                     </>
                       : <>
                         {/* <img src="https://www.freeiconspng.com/thumbs/timer-icon/timer-icon-15.png" width="20" height="20" alt=''/> */}
+                        <div className="timer-img ">
+                        <img  src="https://c8.alamy.com/zooms/9/87ae97a8b46048a3b0c068cc7a061d73/ma33pm.jpg" alt={''}/>
+                        </div>
                         <div className="dropdown" style={{ position: "relative", display: "inline-block" }}>
+                          
                           <button onClick={show_hide} className=" flex open-now-string items-center" data-id={`main-shop-${result.rawData.id}`} >
                             <OpenClose
                               timezone={result.rawData.timezone}
@@ -128,7 +132,7 @@ const LocationCard: CardComponent<Location> = ({ result }) => {
                       </>}
                   </div>
                   <div className="button-bx">
-                    <div className="btn-locationcard flex space-x-9">
+                    <div className="btn-locationcard flex space-x-4">
                       <div className="view-detail-button">
                         <Link type="button" href={`/${result.rawData.id}`} className=" btn notHighlight "
                           data-ya-track={`viewStore -${result.rawData.name}`}
@@ -140,9 +144,12 @@ const LocationCard: CardComponent<Location> = ({ result }) => {
                           {StaticData.StoreDetailbtn}
                         </Link>
                       </div>
+                      <div className="getquote-cta"><a href={c_getQuote?.link} >{c_getQuote?.label}</a> </div>
+                      <div className="get-dir-locationcard">
                       {result.rawData.displayCoordinate ?
                         <GetDirection buttonText={StaticData.getDirection} address={address} latitude={result.rawData.displayCoordinate?.latitude} longitude={result.rawData.displayCoordinate?.longitude} />
                         : <GetDirection buttonText={StaticData.getDirection} address={address} latitude={result.rawData.yextDisplayCoordinate?.latitude} longitude={result.rawData.yextDisplayCoordinate?.longitude} />}
+                    </div>
                     </div>
                   </div>
                 </div></> : <div className="closeddot notHighlight red-dot">

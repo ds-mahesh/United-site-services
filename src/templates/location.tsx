@@ -69,7 +69,9 @@ export const config: TemplateConfig = {
       "timezone",
       "yextDisplayCoordinate",
       "displayCoordinate",
-      "cityCoordinate"
+      "cityCoordinate",
+      "c_getQuote",
+      "c_locatorbanner"
     ],
     // Defines the scope of entities that qualify for this stream.
     filter: {
@@ -445,7 +447,7 @@ breadcrumbScheme.push({
 
       <div className="container">
             <div className='banner-text banner-dark-bg justify-center text-center'>
-              <h1 className="">{name} {name}</h1>
+              <h1 className="">{name}</h1>
                 <div className="openClosestatus detail-page closeing-div">
                   <OpenClose timezone={timezone} hours={hours} />
                 </div> 

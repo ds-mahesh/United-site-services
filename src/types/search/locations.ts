@@ -247,6 +247,8 @@ export interface ComplexVideo {
 }
 
 export interface Location {
+  c_locatorbanner?: Image;
+  c_getQuote?: any;
   c_click_collect_availability: any;
   c_open_for_shopping: any;
   c_clickCollectAvaliability: any;
@@ -260,7 +262,6 @@ export interface Location {
 	dineInHours?: Hours,
 	driveThroughHours?: Hours,
 	fullyVaccinatedStaff?: boolean,
-	name?: string,
 	happyHours?: Hours,
 	holidayHoursConversationEnabled?: boolean,
 	kitchenHours?: Hours,

@@ -19,10 +19,12 @@ import Newsletter from "../components/locatorPage/Newsletter";
 import { JsonLd } from "react-schemaorg";
 import { StaticData } from "../../sites-global/staticData";
 import {
+  
   AnalyticsProvider,
   AnalyticsScopeProvider,
 } from "@yext/pages/components";
 import { AnswerExperienceConfig } from "../config/answersHeadlessConfig";
+
 
 export const config: TemplateConfig = {
   stream: {
@@ -31,6 +33,8 @@ export const config: TemplateConfig = {
     // directly as props to the default exported function.
     fields: [
       "name",
+      "c_getQuote",
+      "c_locatorbanner",
      
     ],
     // Defines the scope of entities that qualify for this stream.
@@ -160,9 +164,11 @@ const Locator: Template<TemplateRenderProps>= ({
    __meta,
  }) => {
    const {    
-   _site
+   _site,
+   c_getQuote,
+   c_locatorbanner,
    } = document;
- 
+   
 
   let templateData = { document: document, __meta: __meta };
   const endpoints =  {
@@ -194,8 +200,11 @@ const Locator: Template<TemplateRenderProps>= ({
         {" "}
         <AnalyticsScopeProvider name={""}>
       <PageLayout _site={_site}>
+        <div className="banner">
         <div className="locator-banner">
-          <img src={_site.c_locatorbanner.url} alt={''} />
+          <img src={c_locatorbanner.url} alt={''} />
+        </div>
+        <div className="image-text">North Salt Lake ,UT</div>
         </div>
         <SearchHeadlessProvider
           experienceKey={AnswerExperienceConfig.experienceKey}

@@ -243,76 +243,82 @@ const SearchLayout = (props: any): JSX.Element => {
           <div className="for-allow">{allowlocation}</div>
           : ''}
         <div className="search-bx">
-          <div className="location-with-filter">
-            <h1 className="">{StaticData.FindLocationtext}</h1>
-          </div>
+          <div className="uselocation-searchbar">
+            <div className="main-sec-search-head">
+              <div className="hading-usemy-location flex">
+                <div className="location-with-filter">
+                  <h1 className="">{StaticData.FindLocationtext}</h1>
+                </div>
+                <div className="use-mylocation">
+                  <button className="useMyLocation" title="Search using your current location!" id="useLocation" onClick={onClick}>
+                    <span className="icon" dangerouslySetInnerHTML={{ __html: UseMylocationsvg }} />
+                    <span className="underline hover:no-underline"> {StaticData.Usemylocation}</span>
+                  </button>
+                </div>
+              </div>
 
-          <div className="search-field">
-            <FilterSearch
-              ref={filterRef}
-              displaymsg={displaymsg}
-              setDisplaymsg={setDisplaymsg}
-              customCssClasses={{
-                filterSearchContainer: "m-2 w-full",
-                inputElement: "FilterSearchInput pr-[90px]",
-                optionsContainer: "options"
-              }}
-              inputvalue={inputvalue}
-              setSearchInputValue={setInputValue}
-              params={params1}
-              searchOnSelect={true}
-              searchFields={[
-                {
-                  entityType: "location",
-                  fieldApiName: "address.line1",
+              <div className="search-field">
+                <FilterSearch
+                  ref={filterRef}
+                  displaymsg={displaymsg}
+                  setDisplaymsg={setDisplaymsg}
+                  customCssClasses={{
+                    filterSearchContainer: "m-2 w-full",
+                    inputElement: "FilterSearchInput pr-[90px]",
+                    optionsContainer: "options"
+                  }}
+                  inputvalue={inputvalue}
+                  setSearchInputValue={setInputValue}
+                  params={params1}
+                  searchOnSelect={true}
+                  searchFields={[
+                    {
+                      entityType: "location",
+                      fieldApiName: "address.line1",
 
-                },
-                {
-                  entityType: "location",
-                  fieldApiName: "address.postalCode",
+                    },
+                    {
+                      entityType: "location",
+                      fieldApiName: "address.postalCode",
 
-                },
-                {
-                  entityType: "location",
-                  fieldApiName: "name",
+                    },
+                    {
+                      entityType: "location",
+                      fieldApiName: "name",
 
-                },
-                {
-                  entityType: "location",
-                  fieldApiName: "address.city",
+                    },
+                    {
+                      entityType: "location",
+                      fieldApiName: "address.city",
 
-                },
-                {
-                  entityType: "location",
-                  fieldApiName: "address.region",
+                    },
+                    {
+                      entityType: "location",
+                      fieldApiName: "address.region",
 
-                },
-                // {
-                //   entityType: "location",
-                //   fieldApiName: "address.countryCode",
+                    },
+                    // {
+                    //   entityType: "location",
+                    //   fieldApiName: "address.countryCode",
 
-                // },
-              ]}
+                    // },
+                  ]}
 
-              handleInputValue={handleInputValue}
-              handleSetUserShareLocation={handleSetUserShareLocation}
-            />
+                  handleInputValue={handleInputValue}
+                  handleSetUserShareLocation={handleSetUserShareLocation}
+                />
 
-            <button
-              className="search-btn"
-              aria-label="Search bar icon"
-              id="search-location-button" onClick={Findinput}>
-              <span dangerouslySetInnerHTML={{ __html: search_icn }} />
-            </button>
+                <button
+                  className="search-btn"
+                  aria-label="Search bar icon"
+                  id="search-location-button" onClick={Findinput}>
+                  <span dangerouslySetInnerHTML={{ __html: search_icn }} />
+                </button>
+              </div>
+            </div>
           </div>
 
           <div className="fliter-sec">
-            <button className="useMyLocation" title="Search using your current location!" id="useLocation" onClick={onClick}>
-              <span className="icon" dangerouslySetInnerHTML={{ __html: UseMylocationsvg }} />
-
-              <span className="underline hover:no-underline"> {StaticData.Usemylocation}</span>
-            </button>
-
             <ResultsCount
               customCssClasses={{ container: "mx-2 my-0 text-dark-gray" }}
             />
@@ -356,20 +362,16 @@ const SearchLayout = (props: any): JSX.Element => {
                 }}
               // CardComponent={LocationCard}
               />
-
-
-              {locationinbuit && locationinbuit.length <= 0 ?
+            </div>
+          </PerfectScrollbar>
+          {locationinbuit && locationinbuit.length <= 0 ?
                 <div className="browse-dir">
                   <a className="underline " href='/gb.html'>Use the search above or <span className="font-second-main-font"> browse our directory</span></a>
                 </div> : ''}
               <div className="button-bx">
                 <ViewMore className={" btn notHighlight lg:!w-[132%] !mb-2 button view-more"} idName={"view-more-button"} buttonLabel={"View More"} />
               </div>
-            </div>
-          </PerfectScrollbar>
         </div>
-
-
       </div>
 
 

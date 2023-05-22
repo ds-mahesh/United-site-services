@@ -208,6 +208,25 @@ nav .active{ @apply bg-light-red}
     color: #ffffff;
 }
 
+/*search-bar- heading*/
+.locator-main .search-bx .uselocation-searchbar {
+  height: 130px;
+  background-color: #00539b;
+}
+.locator-main .search-bx .uselocation-searchbar .location-with-filter h1 {
+  color: #ffffff;
+}
+.locator-main .search-bx .uselocation-searchbar .use-mylocation span{
+  color: #ffffff;
+}
+.main-sec-search-head {
+  padding: 20px 20px;
+}
+.locator-main .left-listing .button-bx .ctaBtn button {
+  background-color: forestgreen;
+}
+
+
 /*location-card*/
 .button-bx .btn-locationcard .view-detail-button a {
   background-color: #00539b;
@@ -228,11 +247,57 @@ nav .active{ @apply bg-light-red}
 .main-sec-contect .contectnumber {
   padding: 0px 1.75rem;
 }
-.timer-sec img{
+/* .timer-sec img{
   height: 18px;
   width: 18px;
 }
 .timer-sec span{
+  color: #00539b;
+} */
+
+.hours-services .dropdown button {
+  padding-left: 5px;
+}
+
+.location-card-detail .hours-sec-card .button-bx .btn-locationcard {
+  width: 100%;
+  /* padding: 0px 20px; */
+}
+.button-bx .btn-locationcard .getquote-cta {
+    background-color: #00539b;
+    border-radius: 20px;
+    color: white;
+    width: 33%;
+    justify-content: center;
+    text-align: center;
+    padding: 8px 0px;
+}
+
+.hours-services .dropdown .dropdown-content {
+  border: 1px solid #00539b;
+  width: 100%;
+}
+
+.hours-services .dropdown {
+  width: 100%;
+}
+
+.hours-services .dropdown .dropdown-content table{
+  text-align: center;
+  color: #00539b;
+}
+.hours-services .dropdown .dropdown-content table tbody tr td {
+  padding: 4px 20px;
+}
+
+.timer-img img{
+  height: 18px;
+  width: 18px;
+}
+.timer-img {
+  padding: 9px 0px;
+}
+.hours-services .dropdown .hours-info span {
   color: #00539b;
 }
 body.menu-opened{ @apply overflow-hidden lg:overflow-auto;}
@@ -328,7 +393,7 @@ body .ps__rail-y{ @apply opacity-100 mt-4 !bg-gray-light w-4}
 body .ps__thumb-y{ @apply bg-gray-dark opacity-100 right-1 w-2}
 body .ps__rail-y:hover .ps__thumb-y{ @apply w-2 bg-gray-dark}
 table.day-hrs{  @apply border-none w-full mb-4}
-table.day-hrs td{ @apply   text-right  }
+/* table.day-hrs td{ @apply   text-right  } */
 .storelocation-openCloseTime table.day-hrs{  @apply bg-white xl:max-w-md 2xl:max-w-lg border   mx-auto xl:right-3.5 relative}
 .storelocation-openCloseTime table.day-hrs .dayName{  @apply w-auto}
 .storelocation-openCloseTime table.day-hrs .time-group{  @apply w-full justify-between }
