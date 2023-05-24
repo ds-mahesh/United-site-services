@@ -265,6 +265,9 @@ nav .active{ @apply bg-light-red}
 .main-sec-contect .contectnumber {
   padding: 0px 1.75rem;
 }
+.main-sec-contect .contectnumber span{
+  font-family: 'Roboto';
+}
 /* .timer-sec img{
   height: 18px;
   width: 18px;

@@ -203,13 +203,14 @@ export const OpenStausFunctions = {
             <div className="hours-info ">
               {" "}
               <span className="font-second-main-font "> Open now - </span>
-              <span className="lowercase">
+              {/* <span className="lowercase">
                 {OpenStausFunctions.formatTime(currentInterval.start).replace(
                   ":00",
                   ""
                 )}
-              </span>{" "}
-              to{" "}
+              </span>{" "} */}
+              {/* to{" "} */}
+              Closes at {" "}
               <span className="lowercase">
                 {OpenStausFunctions.formatTime(currentInterval.end).replace(
                   ":00",
