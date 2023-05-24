@@ -98,7 +98,7 @@ nav .active{ @apply bg-light-red}
    padding: 37px 0px;
 }
 .main-header-search .head-search-bar input{
-  border: 1px solid gray;
+  border: inherit;
   width: 116px;
 }
 .header-data {
@@ -108,19 +108,20 @@ nav .active{ @apply bg-light-red}
 .header-data .headermenu .menulist li {
   color: inherit;
   text-decoration: inherit;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.19;
   font-weight: 500;
   text-transform: uppercase;
   /* padding: 35px 13px 35px; */
-  color: #00539b;
-  padding: 40px 15px;
+  color: #0060b3;
+  padding: 40px 16px;
+  font-family: 'Roboto';
 }
 /* .Header-data .headermenu .menulist li a{
   padding: 0px 15px;
 } */
 .header-data .headermenu {
-  width: 46%;
+  width: 49%;
 }
 
 .header-data .headermenu .menulist {
@@ -135,8 +136,19 @@ nav .active{ @apply bg-light-red}
   width: 33px;
   height: 33px;
 }
+.header-data .coustomer-care-contect p:hover {
+  color: rgb(78, 180, 78);
+}
 .contect-number .coustomer-care-contect {
   padding: 28px 45px;
+}
+.coustomer-care-contect a p{
+  text-decoration: none;
+  font-weight: 900;
+  color: #00539b;
+  font-family: 'Roboto';
+  font-size: 15px;
+  padding-top: 6px;
 }
 
 /*footer*/
@@ -225,6 +237,9 @@ nav .active{ @apply bg-light-red}
 .locator-main .left-listing .button-bx .ctaBtn button {
   background-color: forestgreen;
 }
+.main-sec-search-head .hading-usemy-location .location-with-filter{
+  width: 68%;
+}
 
 
 /*location-card*/
@@ -243,6 +258,9 @@ nav .active{ @apply bg-light-red}
 }
 .center-column .phoneno span{
   color: #00539b;
+  font-family: 'Roboto';
+  font-size: 16px;
+  font-weight: 500;
 }
 .main-sec-contect .contectnumber {
   padding: 0px 1.75rem;
@@ -299,11 +317,19 @@ nav .active{ @apply bg-light-red}
 }
 .hours-services .dropdown .hours-info span {
   color: #00539b;
+  font-family: 'Roboto';
+  font-weight: 500;
 }
 
 .hours-services .infowindow-time .closeing-div {
   padding: 6px 5px;
 }
+.infowindow-time .closeing-div .hours-info span {
+  color: #00539b;
+  font-family: 'Roboto';
+  font-weight: 500;
+}
+
 body.menu-opened{ @apply overflow-hidden lg:overflow-auto;}
 .menu-opened .hdr-right ul{  @apply right-0}
 .menu-opened .menu-btn{  @apply hidden left-auto right-5 visible transition-all ease-in-out duration-200}
@@ -464,7 +490,7 @@ table.day-hrs .time-b{  @apply text-lg md:text-lg  w-auto leading-[1.875rem] rou
 }
 .location-name-miles h2{  @apply text-3xl md:text-lg leading-[1.375rem] text-red md:leading-tight}
 .location-name-miles h2 a{ @apply text-[1.375rem] text-gray font-second-main-font}
-.location-name-miles h2 a {color: #00539b;}
+.location-name-miles h2 a {color: #00539b; font-family: 'Roboto';}
 
 .location-name-miles .distance{
   @apply sm:absolute sm:-top-0.5 right-0 text-base md:text-lg mt-1 sm:mt-0
@@ -487,6 +513,11 @@ table.day-hrs .time-b{  @apply text-lg md:text-lg  w-auto leading-[1.875rem] rou
 }
 .icon-row h6{
   @apply font-normal text-red m-0 leading-5 text-base md:text-lg md:leading-5 mb-1.5
+}
+.icon-row h6 {
+  font-family: 'Roboto';
+  font-weight: 500;
+  color: #00539b;
 }
 .availablity-content{
   /*  border-l border-nav-link*/ @apply pl-0 py-1.5 
