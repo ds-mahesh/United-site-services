@@ -13,7 +13,7 @@ const Address = (props: any) => {
         {/* <a href={gmapsLink} target="_blank" className="hover:underline"> */}
             <div >{address.line1}</div>
             {address.line2 && (<div><span className="notHighlight">{address.line2}</span></div>)}
-            <div ><span className="notHighlight">{address.city}, {address.region} ,{address.postalCode}</span> </div>
+            <div ><span className="notHighlight">{address.city}, {address.region}  {address.postalCode}</span> </div>
             {<div ><span className="notHighlight"></span></div>}
         {/* </a> */}
       </div>

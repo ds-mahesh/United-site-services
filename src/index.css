@@ -263,11 +263,11 @@ nav .active{ @apply bg-light-red}
   width: 100%;
   /* padding: 0px 20px; */
 }
-.button-bx .btn-locationcard .getquote-cta {
+.button-bx  .getquote-cta {
     background-color: #00539b;
     border-radius: 20px;
     color: white;
-    width: 33%;
+    width: 115px;
     justify-content: center;
     text-align: center;
     padding: 8px 0px;
@@ -299,6 +299,10 @@ nav .active{ @apply bg-light-red}
 }
 .hours-services .dropdown .hours-info span {
   color: #00539b;
+}
+
+.hours-services .infowindow-time .closeing-div {
+  padding: 6px 5px;
 }
 body.menu-opened{ @apply overflow-hidden lg:overflow-auto;}
 .menu-opened .hdr-right ul{  @apply right-0}
@@ -353,6 +357,9 @@ body.mapView .mobile-btns .btn.mapBtn{  @apply text-Dark-red border-t-0 border-l
 .search-field{@apply flex relative  }
 .search-bx .search-btn{@apply absolute top-0 rounded-none right-0  text-white p-2 w-12 h-12 text-center bg-red hover:bg-hover-btn}  
 .search-bx .search-btn svg{ @apply mx-auto}
+.search-bx .search-btn {
+  background-color: darkgreen;
+}
 .search-field input{@apply  w-full bg-white h-12 text-dark-gray placeholder:text-dark-gray  py-2 pr-20 sm:py-4 sm:pr-40 pl-4 leading-7  text-[1.0625rem] font-main-font  border border-[#8c8c8c] rounded-none }
 .location p{ @apply mr-2 absolute rounded-lg -left-4 top-[0px] sm:top-[2px] xl:top-1}
 .search-bx .whitespace-nowrap{  @apply text-white !font-normal py-0 }
@@ -381,7 +388,7 @@ body.mapView .mobile-btns .btn.mapBtn{  @apply text-Dark-red border-t-0 border-l
 .list-count{ @apply border-b border-gray-light mb-4 p-2 flex  flex-row items-center}
 .result-inner{@apply p-4 }
 .button-bx{@apply flex flex-col sm:flex-row mt-2.5 justify-around }
-.button-bx .btn{@apply py-1.5 md:py-2  text-center cursor-pointer leading-4 sm:leading-[1.375rem] w-full sm:w-[48%]  
+.button-bx .btn{@apply py-1.5 md:py-2  text-center cursor-pointer leading-4 sm:leading-[1.375rem] w-full sm:w-[45%]  
    px-2 transition-all duration-300 hover:bg-hover-btn text-gray-dark
     hover:text-white   border-black border hover:border-transparent  bg-white text-sm md:text-base font-medium flex items-center justify-center  }
 .button-bx .btn + .btn{  @apply mt-2 sm:mt-0}     
@@ -452,7 +459,8 @@ table.day-hrs .time-b{  @apply text-lg md:text-lg  w-auto leading-[1.875rem] rou
 
 
 .location-name-miles{
-  @apply relative pr-0 md:pr-[6.25rem] leading-5 flex !flex-row justify-between items-center md:flex-col 
+  /* @apply relative pr-0 md:pr-[6.25rem] leading-5 flex !flex-row justify-between items-center md:flex-col  */
+  @apply relative pr-0 md:pr-[6.25rem] leading-5 flex !flex-row  items-center md:flex-col 
 }
 .location-name-miles h2{  @apply text-3xl md:text-lg leading-[1.375rem] text-red md:leading-tight}
 .location-name-miles h2 a{ @apply text-[1.375rem] text-gray font-second-main-font}
@@ -492,7 +500,10 @@ table.day-hrs .time-b{  @apply text-lg md:text-lg  w-auto leading-[1.875rem] rou
 .gm-style-iw-d .button-bx .getdirection1{@apply !bg-transparent  !text-gray underline }
 
 .info-window-content{@apply flex   justify-between}
-.info-window-content .address{ @apply w-2/3 }
+/* .info-window-content .address{ @apply w-2/3 } */
+.info-window-content .address {
+  padding: 8px 28px;
+}
 .gm-ui-hover-effect{@apply !top-2  !right-4}
 .gm-ui-hover-effect span{@apply !w-6 !h-6 }
 .open-now-string svg{  @apply fill-gray-dark}
@@ -519,7 +530,7 @@ nav[aria-label="Pagination"] button:disabled{@apply cursor-not-allowed text-opac
 .nearby-card .button-bx .btn.notHighligh{@apply w-full md:w-[48%] ml-2 bg-white justify-start  border-none text-black underline  }
 .nearby-card .button-bx .btn + .btn{@apply mt-2 md:mt-0 w-auto hover:no-underline}
 .nearby-card .button-bx .btn:hover svg{@apply !fill-red }
-.map-section .button-bx .btn{@apply w-[11.25rem] md:w-[9.25rem] lg:w-[11.25rem]  bg-Dark-red hover:bg-hover-btn font-second-main-font  border-none text-white  }
+.map-section .button-bx .btn{@apply w-[10.25rem] md:w-[9.25rem] lg:w-[10.25rem]  bg-Dark-red hover:bg-hover-btn font-second-main-font  border-none text-white  }
 .map-section .button-bx .btn.notHighligh{@apply w-full md:w-[48%] bg-white justify-start  border-none text-black underline  }
 .map-section .button-bx .btn + .btn{@apply mt-2 md:mt-0 w-auto ml-2 hover:no-underline}
 .map-section .button-bx .btn:hover svg{@apply !fill-red }

@@ -102,7 +102,7 @@ function UnwrappedGoogleMaps({
   const [downinfo, setDownInfo] = useState(true);
   const [hover, setHover] = useState(true);
   const loading = useSearchState((s) => s.searchStatus.isLoading);
- 
+
   let isHover = true;
   const searchZoom: number | number | null | undefined = null;
   let currentMapZoom: number | undefined = 0;
@@ -124,21 +124,21 @@ function UnwrappedGoogleMaps({
 
   locationResults.length > 0
     ? locationResults.map((result: any, i: number) => {
-        if (i == 0 && result) {
-          center = {
-            lat: result.rawData.yextDisplayCoordinate
-              ? result.rawData.yextDisplayCoordinate.latitude
-              : result.rawData.displayCoordinate.latitude,
-            lng: result.rawData.yextDisplayCoordinate
-              ? result.rawData.yextDisplayCoordinate.longitude
-              : result.rawData.displayCoordinate.longitude,
-          };
-        }
-      })
+      if (i == 0 && result) {
+        center = {
+          lat: result.rawData.yextDisplayCoordinate
+            ? result.rawData.yextDisplayCoordinate.latitude
+            : result.rawData.displayCoordinate.latitude,
+          lng: result.rawData.yextDisplayCoordinate
+            ? result.rawData.yextDisplayCoordinate.longitude
+            : result.rawData.displayCoordinate.longitude,
+        };
+      }
+    })
     : (center = {
-        lat: centerLatitude,
-        lng: centerLongitude,
-      });
+      lat: centerLatitude,
+      lng: centerLongitude,
+    });
 
   let info = false;
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
@@ -217,7 +217,7 @@ function UnwrappedGoogleMaps({
     if (mapMarkerClusterer) {
       mapMarkerClusterer.clearMarkers();
     }
-  } catch (e) {}
+  } catch (e) { }
   let i = 0;
   for (const result of locationResults) {
     i++;
@@ -446,7 +446,7 @@ function UnwrappedGoogleMaps({
                 }
                 document
                   .querySelectorAll(".result")
-                  [index].classList.add("fixed-hover");
+                [index].classList.add("fixed-hover");
                 addActiveGrid(index);
                 const position = {
                   lat: result.rawData.yextDisplayCoordinate
@@ -499,103 +499,120 @@ function UnwrappedGoogleMaps({
           <div className="location-name-miles">
             {/* <div className="icon"> <img className=" " src={mapimage} width="20" height="20"
         alt="" /></div> */}
-            <h2>
-              <a className="inline-block notHighlight" href={`/${result.rawData.id}`}>
-                {result.rawData.name}
-              </a>
-            </h2>
-          </div>
-          <div className="content-col info-window-content">
-            <Address address={result.rawData.address} />
-            {result.distance ? (
+            <div className="icon-name flex space-x-2">
+              <div className="icon text-black relative"> <img className=" " src="https://webstockreview.net/images/document-clipart-disorderly-1.png" width="20" height="20"
+                alt={''} />
+                {/* <span className="map-count">D</span> */}
+              </div>
+              <h2>
+                <a className="inline-block notHighlight" href={`/${result.rawData.id}`}>
+                  {result.rawData.name}
+                </a>
+              </h2>
+            </div>
+            {/* {result.distance ? (
               <div className="distance">
                 {metersToMiles(result.distance ?? 0)}{" "}
                 <span>{StaticData.miles}</span>
               </div>
             ) : (
               ""
+            )} */}
+          </div>
+
+          <div className="content-col info-window-content">
+            <Address address={result.rawData.address} />
+          </div>
+          {result.rawData.mainPhone ?
+            <div className="icon-row">
+              <div className="icon"> <img className=" " src={Phonesvg} width="20" height="20" alt="" />
+              </div>
+              <div className="content-col">
+                <h6>Telephone</h6>
+                <a id="address" className="notHighlight" href={`tel:${result.rawData.mainPhone}`}>
+                  {result.rawData.mainPhone}</a>
+              </div>
+            </div> : ''}
+          <div className="hours-services flex">
+            <div className="timer-img ">
+              <img src="https://c8.alamy.com/zooms/9/87ae97a8b46048a3b0c068cc7a061d73/ma33pm.jpg" alt={''} />
+            </div>
+            {result.rawData.hours && result.rawData.hours.reopenDate ? (
+              ""
+            ) : result.rawData.hours ? (
+              <div className="infowindow-time">
+                <OpenClose
+                  timezone={result.rawData.timezone}
+                  hours={result.rawData.hours}
+                  infowindow={true}
+                />
+              </div>
+            ) : (
+              <div className="closeddot notHighlight red-dot">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="8"
+                  height="8"
+                  viewBox="0 0 8 8"
+                >
+                  <circle
+                    id="Ellipse_5"
+                    data-name="Ellipse 5"
+                    cx="4"
+                    cy="4"
+                    r="4"
+                    fill="#ad1e1f"
+                  />
+                </svg>
+                <div className="hours-info text-lg font-second-main-font closeddot">
+                  Closed
+                </div>
+              </div>
             )}
           </div>
-          {/* {result.rawData.mainPhone?
-    <div className="icon-row">
-      <div className="icon"> <img className=" " src={Phonesvg} width="20" height="20" alt="" />
-      </div>
-      <div className="content-col">
-        <h6>Telephone</h6>
-        <a id="address" className="notHighlight" href={`tel:${result.rawData.mainPhone}`}>
-          {result.rawData.mainPhone}</a>
-      </div>
-    </div>:''} */}
-
-          {result.rawData.hours && result.rawData.hours.reopenDate ? (
-            ""
-          ) : result.rawData.hours ? (
-            <div className="">
-              <OpenClose
-                timezone={result.rawData.timezone}
-                hours={result.rawData.hours}
-                infowindow={true}
-              />
-            </div>
-          ) : (
-            <div className="closeddot notHighlight red-dot">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="8"
-                height="8"
-                viewBox="0 0 8 8"
-              >
-                <circle
-                  id="Ellipse_5"
-                  data-name="Ellipse 5"
-                  cx="4"
-                  cy="4"
-                  r="4"
-                  fill="#ad1e1f"
-                />
-              </svg>
-              <div className="hours-info text-lg font-second-main-font closeddot">
-                Closed
-              </div>
-            </div>
-          )}
         </div>
         <div className="button-bx !ml-4 !mb-0">
-          <a type="button" href={`/${result.rawData.id}`} className="btn">
-            {/* <div dangerouslySetInnerHTML={{__html: View_Store}}/> */}
-            {StaticData.StoreDetailbtn}
-          </a>
-          {result.rawData.displayCoordinate ? (
-            <a
-              data-listener="false"
-              data-latitude={result.rawData.displayCoordinate.latitude}
-              data-longitude={result.rawData.displayCoordinate.longitude}
-              className="cursor-pointer  getdirection btn"
-              rel="noopener noreferrer"
-              data-city={result.rawData.address.city}
-              data-country={result.rawData.address.countryCode}
-              data-region={result.rawData.address.region}
-            >
-              {/* <div dangerouslySetInnerHTML={{__html: Directionsvg}}/> */}
-              {StaticData.getDirection}
-            </a>
-          ) : (
-            <a
-              data-listener="false"
-              data-latitude={result.rawData.yextDisplayCoordinate.latitude}
-              data-longitude={result.rawData.yextDisplayCoordinate.longitude}
-              data-city={result.rawData.address.city}
-              data-country={result.rawData.address.countryCode}
-              data-region={result.rawData.address.region}
-              className="cursor-pointer getdirection1 btn"
-              rel="noopener noreferrer"
-            >
-              {/* <div dangerouslySetInnerHTML={{__html: Directionsvg}}/> */}
-              {StaticData.getDirection}
-            </a>
-          )}
-
-          {/* <GetDirection buttonText="Direction" latitude={result.rawData.displayCoordinate?.latitude} longitude={result.rawData.displayCoordinate?.longitude}/> */}
+          <div className="btn-locationcard flex space-x-2">
+            <div className="view-detail-button">
+              <a type="button" href={`/${result.rawData.id}`} className="btn">
+                {/* <div dangerouslySetInnerHTML={{__html: View_Store}}/> */}
+                {StaticData.StoreDetailbtn}
+              </a>
+            </div>
+            <div className="getquote-cta"><a href={result.rawData.c_getQuote?.link} >{result.rawData.c_getQuote?.label}</a> </div>
+            <div className="">
+              {result.rawData.displayCoordinate ? (
+                <a
+                  data-listener="false"
+                  data-latitude={result.rawData.displayCoordinate.latitude}
+                  data-longitude={result.rawData.displayCoordinate.longitude}
+                  className="cursor-pointer  getdirection btn"
+                  rel="noopener noreferrer"
+                  data-city={result.rawData.address.city}
+                  data-country={result.rawData.address.countryCode}
+                  data-region={result.rawData.address.region}
+                >
+                  {/* <div dangerouslySetInnerHTML={{__html: Directionsvg}}/> */}
+                  {StaticData.getDirection}
+                </a>
+              ) : (
+                <a
+                  data-listener="false"
+                  data-latitude={result.rawData.yextDisplayCoordinate.latitude}
+                  data-longitude={result.rawData.yextDisplayCoordinate.longitude}
+                  data-city={result.rawData.address.city}
+                  data-country={result.rawData.address.countryCode}
+                  data-region={result.rawData.address.region}
+                  className="cursor-pointer getdirection1 btn"
+                  rel="noopener noreferrer"
+                >
+                  {/* <div dangerouslySetInnerHTML={{__html: Directionsvg}}/> */}
+                  {StaticData.getDirection}
+                </a>
+              )}
+            </div>
+            {/* <GetDirection buttonText="Direction" latitude={result.rawData.displayCoordinate?.latitude} longitude={result.rawData.displayCoordinate?.longitude}/> */}
+          </div>
         </div>
       </>
     );
