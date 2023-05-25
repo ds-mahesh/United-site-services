@@ -1,11 +1,11 @@
 import * as React from "react";
 import "../../index.css";
-import logofooter from "../../images/logo-footer.svg";
-import facebook from "../../images/facebook.svg";
-import instagram from "../../images/instagram.svg";
-import twitter from "../../images/twitter.svg";
-import youtube from "../../images/youtube.svg";
-import printest from "../../images/printest.svg";
+// import logofooter from "../../images/logo-footer.svg";
+// import facebook from "../../images/facebook.svg";
+// import instagram from "../../images/instagram.svg";
+// import twitter from "../../images/twitter.svg";
+// import youtube from "../../images/youtube.svg";
+// import printest from "../../images/printest.svg";
 import { cookieText, cookiesUrl } from "../../../sites-global/global"
 import CookieConsent from "react-cookie-consent";
 import { StaticData } from "../../../sites-global/staticData";
@@ -27,7 +27,7 @@ const Footer = (props: any) => {
 		};
 	}, []);
 
-	const handleMediaQueryChange = mediaQuery => {
+	const handleMediaQueryChange = (mediaQuery: any) => {
 		if (mediaQuery.matches) {
 			setIsSmallScreen(true);
 		} else {

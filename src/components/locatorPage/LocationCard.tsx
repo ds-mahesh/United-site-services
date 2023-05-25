@@ -12,6 +12,7 @@ import { Link } from "@yext/pages/components";
 import Hours from "../commons/hours";
 import Holidayhours from "../locationDetail/Holdayhours";
 import Model from "../locationDetail/Model";
+import { formatPhoneNumber } from "react-phone-number-input";
 
 
 const metersToMiles = (meters: number) => {
@@ -78,7 +79,7 @@ const LocationCard: CardComponent<Location> = ({ result }) => {
                   data-ya-track={`viewDetail -${result.rawData.name}`}
                   eventName={`viewDetail -${result.rawData.name}`}
                   rel="noopener noreferrer"
-                  href={`/${result.rawData.id}`}>{result.rawData.name}
+                  href={`/${result.rawData.id}`}>{result.rawData.name} {address.region}  {address.postalCode}
                 </Link></h2>
                 {typeof result.distance != "undefined" ?
                   <div className="distance">
@@ -99,7 +100,7 @@ const LocationCard: CardComponent<Location> = ({ result }) => {
                   <img src={Phonesvg} alt={''} />
                   <span>Telephone</span>
                 </div>
-                <div className="contectnumber"><span> {mainPhone}</span></div>
+                <div className="contectnumber"><span>{formatPhoneNumber(mainPhone)}</span></div>
               </div>
               {result.rawData.hours ? <>
                 <div className="mt-2 hours-sec-card">

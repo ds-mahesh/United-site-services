@@ -202,7 +202,7 @@ export const OpenStausFunctions = {
            
             <div className="hours-info ">
               {" "}
-              <span className="font-second-main-font "> Open now - </span>
+              <span className="font-second-main-font "> Open Now - </span>
               {/* <span className="lowercase">
                 {OpenStausFunctions.formatTime(currentInterval.start).replace(
                   ":00",
@@ -211,7 +211,7 @@ export const OpenStausFunctions = {
               </span>{" "} */}
               {/* to{" "} */}
               Closes at {" "}
-              <span className="lowercase">
+              <span className="uppercase">
                 {OpenStausFunctions.formatTime(currentInterval.end).replace(
                   ":00",
                   ""
@@ -232,13 +232,13 @@ export const OpenStausFunctions = {
               <div className="hours-info ">
                 <span className="font-second-main-font "> Closed - </span>
                 {"Opens at "}
-                <span className="lowercase">
+                <span className="uppercase">
                   {OpenStausFunctions.formatTime(nextInterval.start).replace(
                     ":00",
                     ""
                   )}
                 </span>
-                {" "}{week[Day]}
+                {/* {" "}{week[Day]} */}
               </div>
             </div>{" "}
           </div>
@@ -251,7 +251,7 @@ export const OpenStausFunctions = {
               <div className="hours-info ">
                 <span className="font-second-main-font">Closed - </span>
                 {"Opens at "}
-                <span className="lowercase">
+                <span className="uppercase">
                   {OpenStausFunctions.formatTime(nextInterval.start).replace(
                     ":00",
                     ""

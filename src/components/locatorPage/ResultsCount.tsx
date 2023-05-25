@@ -11,7 +11,7 @@ interface ResultsCountCssClasses {
 
 const builtInCssClasses: ResultsCountCssClasses = {
   container: 'pb-7 md:pb-4',
-  text: 'text-sm text-gray-700',
+  text: 'text-xl text-gray-700',
   number: 'font-medium'
 }
 
@@ -50,14 +50,14 @@ export function ResultsCountDisplay({
   }
 
   const messageArray = [
-    // 'Showing ',
-    // offset + 1,
+    'Showing  ',
+     //offset + 1,
     // ' to ',
-    // offset + resultsLength,
-    // ' of ',
+    offset + resultsLength,
+    ' of ',
     resultsCount ,
     // ' Results'
-    '  Locations near'
+    '  Locations'
   ];
 
   const spanArray = messageArray.map((value, index) => {

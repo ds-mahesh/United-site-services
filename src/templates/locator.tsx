@@ -204,7 +204,7 @@ const Locator: Template<TemplateRenderProps>= ({
         <div className="locator-banner">
           <img src={c_locatorbanner.url} alt={''} />
         </div>
-        <div className="image-text">North Salt Lake ,UT</div>
+        <div className="image-text"><h2>North Salt Lake ,UT </h2></div>
         </div>
         <SearchHeadlessProvider
           experienceKey={AnswerExperienceConfig.experienceKey}

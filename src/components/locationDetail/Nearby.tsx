@@ -9,6 +9,7 @@ import Phonesvg from "../../images/phone.svg"
 import { Addresssvg, mobilesvg, View_Store } from "../../../sites-global/global";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import { Link } from "@yext/pages/components";
+import { formatPhoneNumber } from "react-phone-number-input";
 
 export default function Nearby(props: any) {
   
@@ -77,6 +78,7 @@ export default function Nearby(props: any) {
                     <div className="icon-row content-col">
                       <Address address={location.data.address} />
                     </div>
+                    <div className="contectnumber"><span>{formatPhoneNumber(location.data.mainPhone)}</span></div>
                     <div className="icon-row closeing-div">
                     {location.data.hours?
                     <div className="flex open-now-string items-center " data-id={`main-shop-${location.data.id}`} >
