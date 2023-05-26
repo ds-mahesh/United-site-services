@@ -4,7 +4,8 @@ import { Location } from "../../types/search/locations";
 import GetDirection from "../commons/GetDirection";
 import redmapimage from "../../images/red-map.svg";
 import Phonesvg from "../../images/phone.svg";
-import timesvg from "../../images/watch-icn.svg"
+import timesvg from "../../images/timericon.svg"
+import locationsvg from "../../images/location-pinnew.svg"
 import Address from "../commons/Address";
 import OpenClose from "../commons/openClose";
 import { StaticData } from "../../../sites-global/staticData";
@@ -71,7 +72,7 @@ const LocationCard: CardComponent<Location> = ({ result }) => {
           <div className="lp-param-results lp-subparam-hours">
             <div className="location-card-detail">
               <div className="location-name-miles  icon-row">
-                <div className="icon text-black relative"> <img className=" " src="https://webstockreview.net/images/document-clipart-disorderly-1.png" width="20" height="20"
+                <div className="icon text-black relative"> <img className=" " src={locationsvg} width="20" height="20"
                   alt={''} />
                   {/* <span className="map-count">D</span> */}
                 </div>
@@ -114,7 +115,7 @@ const LocationCard: CardComponent<Location> = ({ result }) => {
                       : <>
                         {/* <img src="https://www.freeiconspng.com/thumbs/timer-icon/timer-icon-15.png" width="20" height="20" alt=''/> */}
                         <div className="timer-img ">
-                        <img  src="https://c8.alamy.com/zooms/9/87ae97a8b46048a3b0c068cc7a061d73/ma33pm.jpg" alt={''}/>
+                        <img  src={timesvg} alt={''}/>
                         </div>
                         <div className="dropdown" style={{ position: "relative", display: "inline-block" }}>
                           

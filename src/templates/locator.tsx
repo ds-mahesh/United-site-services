@@ -202,9 +202,11 @@ const Locator: Template<TemplateRenderProps>= ({
       <PageLayout _site={_site}>
         <div className="banner">
         <div className="locator-banner">
-          <img src={c_locatorbanner.url} alt={''} />
+          <img src={_site.c_locatorbanner.url} alt={''} />
         </div>
-        <div className="image-text"><h2>North Salt Lake ,UT </h2></div>
+        <div className="blur-banner">
+        <div className="image-text"><h2>{_site.c_bannertext}</h2></div>
+        </div>
         </div>
         <SearchHeadlessProvider
           experienceKey={AnswerExperienceConfig.experienceKey}

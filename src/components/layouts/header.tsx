@@ -14,10 +14,11 @@ const Header = (props: any) => {
       </a>
     </li>
   ));
+  
 
   return (
     <>
-      <div className="header">
+      <div className="header" id="myHeader">
         <div className="header-data flex">
           <div className="logo"><a><img className="United-services-logo" src={props?._site?.logo?.image?.url} alt={''} /></a></div>
           <div className="headermenu">
@@ -39,6 +40,11 @@ const Header = (props: any) => {
               </a>
             </div>
           </div>
+          {/* <div className="main-getquote">
+          <div className="getquote-btn ">
+          <div className="getquote-sec rounded-l-full"><a href={props._site.c_getQuote.link}>{props?._site?.c_getQuote.label}</a></div>
+          </div>
+          </div> */}
         </div>
       </div >
     </>

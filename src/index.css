@@ -81,21 +81,42 @@ nav .active{ @apply bg-light-red}
 .locator-banner img{
   width: 100%;
   height: 280px;
-  filter: blur(3px);
-  -webkit-filter: blur(3px);
+  /* filter: blur(2px);
+  -webkit-filter: blur(2px); */
 }
 
 .banner .image-text{
   display: flex;
   justify-content: center;
 }
+.banner .image-text{
+  margin-top: -188px;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  /* height: 75%;
+  bottom: 0; */
+}
+.banner .image-text {
+  background:
+        linear-gradient(red, transparent),
+        linear-gradient(to top left, lime, transparent),
+        linear-gradient(to top right, blue, transparent);
+    background-blend-mode: screen;
+}
 .banner .image-text h2{
   font-weight: 600;
-  font-size: 1.8rem;
+  font-size: 2.5rem;
   line-height: 2rem;
+  color: #ffffff;
+  font-family: 'Roboto';
 }
 
-/*header */
+/*header --------------------------------------------------------------------------------------- */
+.header{
+  background-color: #fff;
+  width: 100%;
+}
 
 .header-data .logo a img {  
     height: 100px;
@@ -114,7 +135,7 @@ nav .active{ @apply bg-light-red}
   width: 116px;
 }
 .header-data {
-  padding: 0px 10px;
+  padding-left: 10px;
 }
 
 .header-data .headermenu .menulist li {
@@ -327,6 +348,33 @@ nav .active{ @apply bg-light-red}
     text-align: center;
     padding: 8px 0px;
 }
+/* .getquote-btn a{
+  text-decoration: inherit;
+  z-index: 1;
+  position: relative;
+  color: navy;
+  font-weight: 700;
+  margin-top: 37px;
+}
+.getquote-btn {
+  height: 100%;
+  justify-content: end;
+  display: flex;
+}
+.getquote-sec{
+  position: relative;
+  display: flex;
+  background-color: #a8f326;
+  height: 100%;
+  width: 60%;
+  justify-content: center;
+} */
+/* .getquote-sec:hover{
+  transform: scale(0.5);
+} */
+/* .main-getquote{
+  width: 192px;
+} */
 
 .hours-services .dropdown .dropdown-content {
   border: 1px solid #00539b;
@@ -542,7 +590,10 @@ table.day-hrs .time-b{  @apply text-lg md:text-lg  w-auto leading-[1.875rem] rou
 .icon-row a{
   @apply hover:underline
 }
-
+.icon-row a{
+  font-family: 'Roboto';
+  font-weight: 500;
+}
 .icon-row{
   @apply pl-7 relative flex flex-col
 }
@@ -553,7 +604,7 @@ table.day-hrs .time-b{  @apply text-lg md:text-lg  w-auto leading-[1.875rem] rou
   @apply absolute top-0 left-0
 }
 .icon-row .icon img, .icon-row .icon svg{
-  @apply w-5 mr-0
+  @apply w-6 mr-0
 }
 .icon-row h6{
   @apply font-normal text-red m-0 leading-5 text-base md:text-lg md:leading-5 mb-1.5

@@ -14,7 +14,6 @@ import {
 import Mapicon2 from "../../images/MGMpin.svg";
 import clustericon from "../../images/cluster.png";
 import mapimage from "../../images/map.svg";
-import timesvg from "../../images/watch-icn.svg";
 import Hovermap from "../../images/MGMhover1.svg"
 import Hours from "../commons/hours";
 import reactElementToJSXString from "react-element-to-jsx-string";
@@ -27,12 +26,15 @@ import GetDirection from "../commons/GetDirection";
 import { MarkerClusterer } from "@googlemaps/markerclusterer";
 import Address from "../commons/Address";
 import Phonesvg from "../../images/phone.svg";
+import timesvg from "../../images/timericon.svg"
+import locationsvg from "../../images/location-pinnew.svg"
 import { ResultsCount } from "@yext/search-ui-react";
 import OpenClose from "../commons/openClose";
 import $ from "jquery";
 import { Directionsvg, View_Store } from "../../../sites-global/global";
 import { StaticData } from "../../../sites-global/staticData";
 import useFetchResults from "../../hooks/useFetchResults";
+import { formatPhoneNumber } from "react-phone-number-input";
 /**
  * CSS class interface for the {@link GoogleMaps} component
  *
@@ -500,7 +502,7 @@ function UnwrappedGoogleMaps({
             {/* <div className="icon"> <img className=" " src={mapimage} width="20" height="20"
         alt="" /></div> */}
             <div className="icon-name flex space-x-2">
-              <div className="icon text-black relative"> <img className=" " src="https://webstockreview.net/images/document-clipart-disorderly-1.png" width="20" height="20"
+              <div className="icon text-black relative"> <img className=" " src={locationsvg} width="20" height="20"
                 alt={''} />
                 {/* <span className="map-count">D</span> */}
               </div>
@@ -510,14 +512,14 @@ function UnwrappedGoogleMaps({
                 </a>
               </h2>
             </div>
-            {/* {result.distance ? (
+            {result.distance ? (
               <div className="distance">
                 {metersToMiles(result.distance ?? 0)}{" "}
                 <span>{StaticData.miles}</span>
               </div>
             ) : (
               ""
-            )} */}
+            )}
           </div>
 
           <div className="content-col info-window-content">
@@ -530,12 +532,12 @@ function UnwrappedGoogleMaps({
               <div className="content-col">
                 <h6>Telephone</h6>
                 <a id="address" className="notHighlight" href={`tel:${result.rawData.mainPhone}`}>
-                  {result.rawData.mainPhone}</a>
+                {formatPhoneNumber(result.rawData.mainPhone)}</a>
               </div>
             </div> : ''}
           <div className="hours-services flex">
             <div className="timer-img ">
-              <img src="https://c8.alamy.com/zooms/9/87ae97a8b46048a3b0c068cc7a061d73/ma33pm.jpg" alt={''} />
+              <img src={timesvg} alt={''} />
             </div>
             {result.rawData.hours && result.rawData.hours.reopenDate ? (
               ""
