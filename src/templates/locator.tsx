@@ -66,7 +66,7 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
        type: "meta",
        attributes: {
          name: "description",
-         content: `${document.c_meta_description?document.c_meta_description:`View  United Site Services near you today at USS. We stock high-quality, robust products at competitive rates.`}`,
+         content: `${document.c_meta_description?document.c_meta_description:`View  United Site Services near you today at USS.`}`,
        },
      },
 
@@ -108,7 +108,7 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
        type: "meta",
        attributes: {
          property: "og:description",
-         content: `${document.c_meta_description?document.c_meta_description:`View United Site Services near you today at USS. We stock high-quality, robust products at competitive rates.`}`,
+         content: `${document.c_meta_description?document.c_meta_description:`View United Site Services near you today at USS.`}`,
        },
      },
      {
@@ -136,14 +136,14 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
       type: "meta",
       attributes: {
         name: "twitter:description",
-        content:`${document.c_meta_description?document.c_meta_description:`View United Site Services near you today at USS. We stock high-quality, robust products at competitive rates.`}`,
+        content:`${document.c_meta_description?document.c_meta_description:`View United Site Services near you today at USS.`}`,
       },
     },
     {
       type: "meta",
       attributes: {
         name: "twitter:title",
-        content: `${document.c_meta_title?document.c_meta_title:`United Site Services Near Me - Find United Site Services Branch Branch Locator Here.`}`,
+        content: `${document.c_meta_title?document.c_meta_title:`United Site Services Near Me - Find United Site Services Branch Locator Here.`}`,
       },
     },
     {
