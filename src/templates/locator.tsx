@@ -205,7 +205,7 @@ const Locator: Template<TemplateRenderProps>= ({
           <img src={_site.c_locatorbanner.url} alt={''} />
         </div>
         <div className="blur-banner">
-        <div className="image-text"><h2>{_site.c_bannertext}</h2></div>
+        <div className="image-text image-color"><h2>{_site.c_bannertext}</h2></div>
         </div>
         </div>
         <SearchHeadlessProvider

@@ -40,11 +40,11 @@ const Header = (props: any) => {
               </a>
             </div>
           </div>
-          {/* <div className="main-getquote">
+          <div className="main-getquote">
           <div className="getquote-btn ">
-          <div className="getquote-sec rounded-l-full"><a href={props._site.c_getQuote.link}>{props?._site?.c_getQuote.label}</a></div>
+          <div className="getquote-sec rounded-l-full"><a href={props?._site?.c_getQuote?.link}>{props?._site?.c_getQuote.label}</a></div>
           </div>
-          </div> */}
+          </div>
         </div>
       </div >
     </>
