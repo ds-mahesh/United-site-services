@@ -98,7 +98,7 @@ nav .active{ @apply bg-light-red}
 }
 .banner .blur-banner {
   background:
-        linear-gradient(#a92929, transparent),
+        linear-gradient(#2a1818, transparent),
         linear-gradient(to top left, lime, transparent),
         linear-gradient(to top right, blue, transparent);
     background-blend-mode: screen;
