@@ -66,7 +66,7 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
        type: "meta",
        attributes: {
          name: "description",
-         content: `${document.c_meta_description?document.c_meta_description:`View Timber Merchants near you today at MGM Timber. We stock high-quality, robust products at competitive rates.`}`,
+         content: `${document.c_meta_description?document.c_meta_description:`View  United Site Services near you today at USS. We stock high-quality, robust products at competitive rates.`}`,
        },
      },
 
@@ -108,7 +108,7 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
        type: "meta",
        attributes: {
          property: "og:description",
-         content: `${document.c_meta_description?document.c_meta_description:`View Timber Merchants near you today at MGM Timber. We stock high-quality, robust products at competitive rates.`}`,
+         content: `${document.c_meta_description?document.c_meta_description:`View United Site Services near you today at USS. We stock high-quality, robust products at competitive rates.`}`,
        },
      },
      {
@@ -136,7 +136,7 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
       type: "meta",
       attributes: {
         name: "twitter:description",
-        content:`${document.c_meta_description?document.c_meta_description:`View Timber Merchants near you today at MGM Timber. We stock high-quality, robust products at competitive rates.`}`,
+        content:`${document.c_meta_description?document.c_meta_description:`View United Site Services near you today at USS. We stock high-quality, robust products at competitive rates.`}`,
       },
     },
     {
