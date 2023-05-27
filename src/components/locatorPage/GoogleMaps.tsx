@@ -479,25 +479,25 @@ function UnwrappedGoogleMaps({
     info = true;
     let url = "";
 
-    // const name: any = result.rawData.name?.toLowerCase();
-    // const region: any = result.rawData.address.region?.toLowerCase();
-    // const initialregion: any = region.toString();
-    // const finalregion: any = initialregion.replaceAll(" ", "-");
-    // const city: any = result.rawData.address.city?.toLowerCase();
-    // const initialrcity: any = city.toString();
-    // const finalcity: any = initialrcity.replaceAll(" ", "-");
-    // const string1: any = name.toString();
-    // const result1: any = string1.replaceAll(" ", "-");
-    // if (!result.rawData.slug) {
-    //   url = `${result.rawData.id}-${result1}.html`;
-    // } else {
-    //   url = `${result.rawData.slug.toString()}.html`;
-    // }
+    const name: any = result.rawData.name?.toLowerCase();
+    const region: any = result.rawData.address.region?.toLowerCase();
+    const initialregion: any = region.toString();
+    const finalregion: any = initialregion.replaceAll(" ", "-");
+    const city: any = result.rawData.address.city?.toLowerCase();
+    const initialrcity: any = city.toString();
+    const finalcity: any = initialrcity.replaceAll(" ", "-");
+    const string1: any = name.toString();
+    const result1: any = string1.replaceAll(" ", "-");
+    if (!result.rawData.slug) {
+      url = `${result.rawData.id}-${result1}.html`;
+    } else {
+      url = `${result.rawData.slug.toString()}.html`;
+    }
 
     const MarkerContent = (
       <>
         {" "}
-        <div className="flex w-full flex-col max-w-[24rem] pl-4  md:w-[22.5rem] font-main-font text-xs sm:text-sm lg:text-base">
+        <div className="flex w-full flex-col max-w-[35rem] pl-4  md:w-[28.5rem] font-main-font text-xs sm:text-sm lg:text-base">
           <div className="location-name-miles">
             {/* <div className="icon"> <img className=" " src={mapimage} width="20" height="20"
         alt="" /></div> */}
@@ -508,10 +508,11 @@ function UnwrappedGoogleMaps({
               </div>
               <h2>
                 <a className="inline-block notHighlight" href={`/${result.rawData.id}`}>
-                  {result.rawData.name}
+                  {result.rawData.name}  {result.rawData.address.region}  {result.rawData.address.postalCode}
                 </a>
               </h2>
             </div>
+            <div className="main-distance">
             {result.distance ? (
               <div className="distance">
                 {metersToMiles(result.distance ?? 0)}{" "}
@@ -520,6 +521,7 @@ function UnwrappedGoogleMaps({
             ) : (
               ""
             )}
+            </div>
           </div>
 
           <div className="content-col info-window-content">

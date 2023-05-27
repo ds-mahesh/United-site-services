@@ -81,8 +81,6 @@ nav .active{ @apply bg-light-red}
 .locator-banner img{
   width: 100%;
   height: 280px;
-  /* filter: blur(2px);
-  -webkit-filter: blur(2px); */
 }
 .locator-banner{
   position: absolute;
@@ -96,19 +94,8 @@ nav .active{ @apply bg-light-red}
   justify-content: center;
 }
 .banner .image-text{
-  /* margin-top: -188px; */
-  /* position: absolute; */
-  /* text-align: center; */
   width: 100%;
-  /* height: 75%;
-  bottom: 0; */
-  /* top: 100px;
-  bottom: 270px; */
 }
-/* .image-color {
-  height: 100%;
-  top: 100px;
-} */
 .banner .blur-banner {
   background:
         linear-gradient(#a92929, transparent),
@@ -128,6 +115,16 @@ nav .active{ @apply bg-light-red}
   padding-top: 100px;
 }
 
+.location-banner img{
+  height: 280px;
+  left: 0;
+  right: 0;
+  width: 100%;
+}
+.location-banner{
+  position: relative;
+}
+
 /*header --------------------------------------------------------------------------------------- */
 .header{
   background-color: #fff;
@@ -138,10 +135,15 @@ nav .active{ @apply bg-light-red}
     height: 100px;
     width: 107px;
    vertical-align: middle;
+ 	-webkit-transform: scale(1);
+	transform: scale(1);
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
 }
-/* .Header-data .logo{
-  width: 10%;
-} */
+.header-data .logo a:hover img{
+	-webkit-transform: scale(1.3);
+	transform: scale(1.3);
+}
 
 .main-header-search .head-search-bar {
    padding: 37px 0px;
@@ -166,9 +168,7 @@ nav .active{ @apply bg-light-red}
   padding: 40px 16px;
   font-family: 'Roboto';
 }
-/* .Header-data .headermenu .menulist li a{
-  padding: 0px 15px;
-} */
+
 .header-data .headermenu {
   width: 49%;
 }

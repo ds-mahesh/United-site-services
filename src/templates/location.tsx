@@ -445,7 +445,7 @@ breadcrumbScheme.push({
         <AnalyticsScopeProvider name={""}>
       <PageLayout _site={_site}>
 
-      <div className="locator-banner">
+      <div className="location-banner">
           <img src={c_locatorbanner?.url} alt={''} />
         </div>
       <div className="container">
