@@ -114,6 +114,15 @@ nav .active{ @apply bg-light-red}
   font-family: 'Roboto';
   padding-top: 100px;
 }
+.banner .image-text span{
+    /* font-weight: 600; */
+    font-size: 1.5rem;
+    line-height: 2rem;
+    color: #ffffff;
+    /* font-family: 'Roboto'; */
+    /* padding-top: 130px; */
+    font-style: italic;
+}
 
 .location-banner img{
   height: 280px;
@@ -422,6 +431,10 @@ nav .active{ @apply bg-light-red}
   font-family: 'Roboto';
   font-weight: 500;
 }
+.hours-info {
+    font-family: 'Roboto';
+    font-weight: 500;
+}
 
 .hours-services .infowindow-time .closeing-div {
   padding: 6px 5px;
@@ -599,7 +612,7 @@ table.day-hrs .time-b{  @apply text-lg md:text-lg  w-auto leading-[1.875rem] rou
 }
 .location-name-miles h2{  @apply text-3xl md:text-lg leading-[1.375rem] text-red md:leading-tight}
 .location-name-miles h2 a{ @apply text-[1.375rem] text-gray font-second-main-font}
-.location-name-miles h2 a {color: #00539b; font-family: 'Roboto';}
+.location-name-miles h2 a {color: #00539b; font-family: 'Roboto'; font-weight: 500;}
 
 .location-name-miles .distance{
   @apply sm:absolute sm:-top-0.5 right-0 text-base md:text-lg mt-1 sm:mt-0
@@ -633,6 +646,36 @@ table.day-hrs .time-b{  @apply text-lg md:text-lg  w-auto leading-[1.875rem] rou
 }
 .availablity-content{
   /*  border-l border-nav-link*/ @apply pl-0 py-1.5 
+}
+
+/*nearby-card*/
+.nearby-card .location-name-miles h2 a{
+  font-size: 1.375rem;
+  --tw-text-opacity: 1;
+  color: rgb(56 56 56 / var(--tw-text-opacity));
+  color: #00539b;
+  font-family: 'Roboto';
+}
+.nearby-card .phoneno span{
+  color: #00539b;
+  font-family: 'Roboto';
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.nearby-card .contectnumber span{
+  font-family: 'Roboto';
+    font-weight: 500;
+    padding-left: 25px;
+}
+
+.nearby-card .icon-row .hours-info span{
+  color: #00539b;
+  font-family: 'Roboto';
+  font-weight: 500;
+}
+.nearby-card .address {
+  padding: 10px 25px;
 }
 
 
@@ -717,7 +760,21 @@ nav[aria-label="Pagination"] button:disabled{@apply cursor-not-allowed text-opac
 /* address sec */
 .location-information{  @apply flex flex-wrap w-full justify-between xl:justify-start max-w-[87.5rem] mx-auto md:px-5 xl:px-4 2xl:px-0 pb-7 pt-1 md:py-11}
 .address-main-sec{@apply bg-address-bg px-4 md:px-6 py-4 md:py-6 w-full md:w-[48%]  lg:w-[24.8125rem] relative z-[0] md:mr-4 order-2 md:order-none mt-4 md:mt-4 lg:mt-0; } 
-.address-main-sec .address-text{ @apply text-lg md:text-lg}
+/* .address-main-sec .address-text{ @apply text-lg md:text-lg} */
+.address-main-sec .address-text {
+    font-size: 18px;
+    line-height: 1.22;
+    font-weight: normal;
+    font-family: 'Roboto';
+    color: #00539b;
+}
+.location-information .address-main-sec h4 {
+    font-size: 20px;
+    line-height: 1.22;
+    font-weight: 500;
+    font-family: 'Roboto';
+    color: #053b8d;
+}
 .address-main-sec .map-sec{ @apply block h-72 -ml-4 w-[100vw] md:hidden}
 .box-title{@apply font-second-main-font text-[1.3125rem] md:text-[1.375rem] mb-4}
 .title-with-link{@apply flex justify-between items-center mb-4}
@@ -833,7 +890,7 @@ nav[aria-label="Pagination"] button:disabled{@apply cursor-not-allowed text-opac
 .nearby-card .red-dot{ @apply !justify-start}
 .nearby-card .icon-row{ @apply pl-0}
 .nearby-card .OpenDot{ @apply  font-second-main-font  text-lg}
-.nearby-card h2 a{ @apply font-second-main-font  !text-lg text-black }
+/* .nearby-card h2 a{ @apply font-second-main-font  !text-lg text-black } */
 .nearby-card .distance{ @apply absolute right-0 md:right-2 top-0 md:-top-0.5}
 .near-address{ @apply flex mt-2 items-start min-h-[90px]}
 .nearby-card .address { @apply text-lg }

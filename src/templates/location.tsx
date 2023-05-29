@@ -48,6 +48,7 @@ import FeaturesBrand from "../components/locationDetail/FeaturesBrand";
 import { Fade, Slide } from "react-awesome-reveal";
 import MgmTimber from "../components/locationDetail/MgmTimber";
 import { AnswerExperienceConfig } from "../config/answersHeadlessConfig";
+import { formatPhoneNumber } from "react-phone-number-input";
 
 /**
  * Required when Knowledge Graph data is used for a template.
@@ -70,6 +71,9 @@ export const config: TemplateConfig = {
       "yextDisplayCoordinate",
       "displayCoordinate",
       "cityCoordinate",
+      // "dm_directoryParents.name",
+      // "dm_directoryParents.slug",
+      // "dm_directoryParents.meta.entityType",
       "c_getQuote",
       "c_locatorbanner"
     ],
@@ -276,7 +280,8 @@ const Location: Template<ExternalApiRenderData> = ({
     displayCoordinate,
     cityCoordinate,
     name,
-    c_locatorbanner
+    c_locatorbanner,
+    dm_directoryParents
   } = document;
 
  let templateData = { document: document, __meta: __meta };
@@ -444,13 +449,28 @@ breadcrumbScheme.push({
         {" "}
         <AnalyticsScopeProvider name={""}>
       <PageLayout _site={_site}>
-
-      <div className="location-banner">
-          <img src={c_locatorbanner?.url} alt={''} />
+         <div className="banner">
+        <div className="locator-banner">
+          <img src={c_locatorbanner.url} alt={''} />
         </div>
+        <div className="blur-banner">
+        <div className="image-text image-color">
+          <div>
+          <h2>{name}, {address.region}</h2>
+        <span>{address.city}, {address.postalCode}</span>
+        </div>
+        </div>
+        </div>
+        </div>
+        <BreadCrumbs
+              name={name}
+              address={address}
+              parents={dm_directoryParents}
+              baseUrl={relativePrefixToRoot}
+            ></BreadCrumbs>
       <div className="container">
             <div className='banner-text banner-dark-bg justify-center text-center'>
-              <h1 className="">{name}</h1>
+              {/* <h1 className="">{name}</h1> */}
                 <div className="openClosestatus detail-page closeing-div">
                   <OpenClose timezone={timezone} hours={hours} />
                 </div> 
@@ -458,7 +478,8 @@ breadcrumbScheme.push({
           </div>
           <div className="location-information">
         <Contact address={address} 
-           phone={mainPhone} latitude={yextDisplayCoordinate ? yextDisplayCoordinate.latitude : displayCoordinate?.latitude}
+          //  phone={formatPhoneNumber(mainPhone)} 
+           latitude={yextDisplayCoordinate ? yextDisplayCoordinate.latitude : displayCoordinate?.latitude}
            yextDisplayCoordinate={yextDisplayCoordinate} longitude={yextDisplayCoordinate ? yextDisplayCoordinate.longitude : displayCoordinate?.longitude} hours={hours}  additionalHoursText={additionalHoursText} ></Contact>
           {
             hours ?

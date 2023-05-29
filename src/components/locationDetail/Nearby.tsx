@@ -3,12 +3,14 @@ import ApiCall from "../../Apis/ApiCall";
 import Address from "../commons/Address";
 import GetDirection from "../commons/GetDirection";
 import OpenClose from "../commons/openClose"
-import timesvg from "../../images/watch-icn.svg"
+import timesvg from "../../images/timericon.svg"
 import mapimage from "../../images/map.svg";
 import Phonesvg from "../../images/phone.svg"
+import locationsvg from "../../images/location-pinnew.svg"
 import { Addresssvg, mobilesvg, View_Store } from "../../../sites-global/global";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import { Link } from "@yext/pages/components";
+import { StaticData } from "../../../sites-global/staticData";
 import { formatPhoneNumber } from "react-phone-number-input";
 
 export default function Nearby(props: any) {
@@ -68,18 +70,33 @@ export default function Nearby(props: any) {
               <>
                 {/* <SplideSlide key={index}> */}
                   <div className="nearby-card">
-                    <div className="location-name-miles icon-row">
+                    <div className="location-name-miles icon-row flex space-x-1">
+                      <div>
+                      <img src={locationsvg} alt={''} height="20" width="20" />
+                      </div>
                       <h2><Link className="inline-block notHighlight" href={`/${location.data.id}`}
                         data-ya-track={`${location.data.name}`}
                         eventName={`${location.data.name}`}
-                        rel="noopener noreferrer">{location.data.name}</Link></h2>
-
+                        rel="noopener noreferrer">{location.data.name} {location.data.address.region}  {location.data.address.postalCode}</Link></h2>
+                      {typeof location.distance != "undefined" ?
+                <div className="distance">
+                  {metersToMiles(location.distance)} <span>{StaticData.miles}</span>
+                </div>
+                : ''}
                     </div>
                     <div className="icon-row content-col">
                       <Address address={location.data.address} />
                     </div>
+                    <div className="phoneno flex space-x-2" >
+                  <img src={Phonesvg} alt={''} />
+                  <span>Telephone</span>
+                </div>
                     <div className="contectnumber"><span>{formatPhoneNumber(location.data.mainPhone)}</span></div>
                     <div className="icon-row closeing-div">
+                       <div className="timer-nearbycard flex space-x-2">
+                    <div className="timer-img ">
+                        <img  src={timesvg} alt={''}/>
+                        </div>
                     {location.data.hours?
                     <div className="flex open-now-string items-center " data-id={`main-shop-${location.data.id}`} >
                       <OpenClose timezone={location.data.timezone} hours={location.data.hours} deliveryHours={location.data.hours}></OpenClose>
@@ -94,6 +111,7 @@ export default function Nearby(props: any) {
                    </div>
                     }
                     </div> 
+                   </div>
                     <div className="button-bx">
                       <Link className="btn" href={`/${location.data.id}`}
                        data-ya-track={`viewstore-${location.data.name}`}

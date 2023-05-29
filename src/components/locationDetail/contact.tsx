@@ -10,6 +10,7 @@ import { StaticData } from "../../../sites-global/staticData";
 import Holidayhours from "./Holdayhours";
 import Model from "./Model";
 import CustomMap from "./CustomMap";
+import locationsvg from "../../images/location-pinnew.svg"
 
 const Contact = (props: any) => {
   const {
@@ -27,18 +28,18 @@ const Contact = (props: any) => {
   return (
     <>
       <div className="address-main-sec">
-        <h4 className="box-title">{c_storeInfoHeading?c_storeInfoHeading:"Store Details"}</h4>
+        <h4 className="box-title">{c_storeInfoHeading?c_storeInfoHeading:"Branch Address"}</h4>
 
         <div className="icon-row content-col">
           <div className="icon">
             {" "}
-            <img className=" " src={mapimage} width="20" height="20" alt="mapimage" />
+            <img className=" " src={locationsvg} width="20" height="20" alt="mapimage" />
           </div>
           <div className="  address-text notHighlight">
             {address.line1}
             <div>{address.line2 && <div>{address.line2}</div>}</div>
-            <div>{address.city}</div>
-            <div>{address.postalCode}</div>
+            <div>{address.city}, {address.region} {address.postalCode}</div>
+            <div></div>
           </div>
         </div>
 
