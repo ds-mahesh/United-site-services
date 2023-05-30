@@ -677,6 +677,10 @@ table.day-hrs .time-b{  @apply text-lg md:text-lg  w-auto leading-[1.875rem] rou
 .nearby-card .address {
   padding: 10px 25px;
 }
+.nearby-card .button-bx .btn{
+  background-color: #00539b;
+  border-radius: 25px;
+}
 
 
 .gm-style-iw{ @apply  !px-0 max-w-full md:!max-w-[24.312rem] lg:!max-w-full}
@@ -712,7 +716,7 @@ nav[aria-label="Pagination"] button:disabled{@apply cursor-not-allowed text-opac
 .pagination-conatiner{ @apply mt-4}
 .nearby-btn .btn{ @apply !w-full}
 .nearby-card .button-bx{@apply ml-0 lg:ml-0 flex-row justify-start }
-.nearby-card .button-bx .btn{@apply w-[9.75rem] bg-Dark-red hover:bg-hover-btn font-second-main-font py-2.5  border-none text-white  }
+.nearby-card .button-bx .btn{@apply w-[9.75rem]  hover:bg-hover-btn font-second-main-font py-2.5  border-none text-white  }
 .nearby-card .button-bx .btn.notHighligh{@apply w-full md:w-[48%] ml-2 bg-white justify-start  border-none text-black underline  }
 .nearby-card .button-bx .btn + .btn{@apply mt-2 md:mt-0 w-auto hover:no-underline}
 .nearby-card .button-bx .btn:hover svg{@apply !fill-red }
@@ -760,8 +764,8 @@ nav[aria-label="Pagination"] button:disabled{@apply cursor-not-allowed text-opac
 /* address sec */
 .location-information{  @apply flex flex-wrap w-full justify-between xl:justify-start max-w-[87.5rem] mx-auto md:px-5 xl:px-4 2xl:px-0 pb-7 pt-1 md:py-11}
 .address-main-sec{@apply bg-address-bg px-4 md:px-6 py-4 md:py-6 w-full md:w-[48%]  lg:w-[24.8125rem] relative z-[0] md:mr-4 order-2 md:order-none mt-4 md:mt-4 lg:mt-0; } 
-/* .address-main-sec .address-text{ @apply text-lg md:text-lg} */
-.address-main-sec .address-text {
+.address-main-sec .address-text{ @apply text-lg md:text-lg}
+/* .address-main-sec .address-text {
     font-size: 18px;
     line-height: 1.22;
     font-weight: normal;
@@ -774,7 +778,23 @@ nav[aria-label="Pagination"] button:disabled{@apply cursor-not-allowed text-opac
     font-weight: 500;
     font-family: 'Roboto';
     color: #053b8d;
-}
+} */
+/* font-size: 1.375rem;
+    --tw-text-opacity: 1;
+    color: rgb(56 56 56 / var(--tw-text-opacity));
+    color: #00539b;
+    font-family: 'Roboto';
+    font-weight: 500; */
+
+    /*location page address card*/
+    .address-main-sec .location-pagename h4{
+    font-size: 1.375rem;
+    --tw-text-opacity: 1;
+    color: rgb(56 56 56 / var(--tw-text-opacity));
+    color: #00539b;
+    font-family: 'Roboto';
+    font-weight: 500;
+    }
 .address-main-sec .map-sec{ @apply block h-72 -ml-4 w-[100vw] md:hidden}
 .box-title{@apply font-second-main-font text-[1.3125rem] md:text-[1.375rem] mb-4}
 .title-with-link{@apply flex justify-between items-center mb-4}

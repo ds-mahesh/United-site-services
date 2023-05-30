@@ -297,11 +297,11 @@ const SearchLayout = (props: any): JSX.Element => {
                       fieldApiName: "address.region",
 
                     },
-                    // {
-                    //   entityType: "location",
-                    //   fieldApiName: "address.countryCode",
+                    {
+                      entityType: "location",
+                      fieldApiName: "address.countryCode",
 
-                    // },
+                    },
                   ]}
 
                   handleInputValue={handleInputValue}

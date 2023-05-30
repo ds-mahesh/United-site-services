@@ -11,6 +11,7 @@ import Holidayhours from "./Holdayhours";
 import Model from "./Model";
 import CustomMap from "./CustomMap";
 import locationsvg from "../../images/location-pinnew.svg"
+import OpenClose from "../commons/openClose";
 
 const Contact = (props: any) => {
   const {
@@ -23,17 +24,22 @@ const Contact = (props: any) => {
     additionalHoursText,
     yextDisplayCoordinate,
     c_storeInfoHeading,
-    c_getDirectionsCTAText
+    c_getDirectionsCTAText,
+    name,
+    timezone
   } = props;
   return (
     <>
       <div className="address-main-sec">
-        <h4 className="box-title">{c_storeInfoHeading?c_storeInfoHeading:"Branch Address"}</h4>
-
+        {/* <h4 className="box-title">{c_storeInfoHeading?c_storeInfoHeading:"Branch Address"}</h4> */}
+           <div className="location-pagename flex space-x-2">
+              <img className=" " src={locationsvg} width="20" height="20" alt="mapimage" />
+              <h4 className="box-title">{name}, {address.region} {address.postalCode}</h4>
+            </div>
         <div className="icon-row content-col">
           <div className="icon">
             {" "}
-            <img className=" " src={locationsvg} width="20" height="20" alt="mapimage" />
+            {/* <img className=" " src={locationsvg} width="20" height="20" alt="mapimage" /> */}
           </div>
           <div className="  address-text notHighlight">
             {address.line1}
@@ -44,20 +50,24 @@ const Contact = (props: any) => {
         </div>
 
         {phone ? (
+          <>
           <div className="icon-row">
             <div className="icon">
               {" "}
               <img className=" " src={Phonesvg} width="22" height="22" alt="phonesvg" />
             </div>
             <div className="content-col">
-              <a id="address" className=" location-phn" href={`tel:${phone}`}>
-                {phone}
-              </a>
+             Telephone
             </div>
           </div>
+           <a id="address" className=" location-phn" href={`tel:${phone}`}>
+                {phone}
+              </a>
+              </>
         ) : (
           ""
         )}
+           {/* <OpenClose timezone={timezone} hours={hours} /> */}
 
         <ul className="">
           <li className="button-bx direction-button">
