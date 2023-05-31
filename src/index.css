@@ -318,7 +318,8 @@ nav .active{ @apply bg-light-red}
 /*location-card*/
 .button-bx .btn-locationcard .view-detail-button a {
   background-color: #00539b;
-  border-radius: 20px
+  border-radius: 20px;
+  
 }
 
 .result-inner .center-column .address-cta {

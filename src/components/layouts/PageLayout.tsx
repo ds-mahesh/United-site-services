@@ -8,6 +8,7 @@ type Props = {
   _site?: any;
   global?: any;
   children?: React.ReactNode;
+   templateData?: React.ReactNode;
 };
 
 const PageLayout = ({
