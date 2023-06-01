@@ -96,6 +96,13 @@ nav .active{ @apply bg-light-red}
 .banner .image-text{
   width: 100%;
 }
+.banner .country-banner{
+  display: flex;
+  /* justify-content: center; */
+}
+.banner .country-banner{
+  width: 100%;
+}
 .banner .blur-banner {
   background:
         linear-gradient(#2a1818, transparent),
@@ -382,11 +389,11 @@ nav .active{ @apply bg-light-red}
   font-weight: 700;
   margin-top: 37px;
 }
-.getquote-btn {
+/* .getquote-btn {
   height: 100%;
   justify-content: end;
   display: flex;
-}
+} */
 .getquote-sec{
   position: relative;
   display: flex;
@@ -529,6 +536,11 @@ body.mapView .mobile-btns .btn.mapBtn{  @apply text-Dark-red border-t-0 border-l
 #result-1 .result-inner{ @apply pt-0 md:pt-4}
 #result-1 .result-inner .availablity-content{@apply mt-2}
 .location-phn{ @apply underline hover:!no-underline text-lg }
+.location-phn {
+    font-family: 'Roboto';
+    font-weight: 500;
+    padding-left: 25px;
+}
 .fliter-sec{ @apply mt-2 flex items-start sm:items-center justify-start sm:justify-between  flex-col sm:flex-row}
 .location .result-inner .green-dot, .location .result-inner .red-dot{ @apply  flex justify-center items-center flex-row-reverse  }
 .location .result-inner .green-dot svg, .location .result-inner .red-dot svg{ @apply  ml-1 mt-1 }
@@ -750,6 +762,9 @@ nav[aria-label="Pagination"] button:disabled{@apply cursor-not-allowed text-opac
 .breadcrumb ul li a{ 
   @apply hover:text-red font-main-font
 }
+.country-breadcrumb .breadcrumb ul li{
+  color: #ffffff;
+}
 
 /* hero-banner */
 .hero-section{  @apply relative z-0 overflow-hidden bg-black}
@@ -794,6 +809,18 @@ nav[aria-label="Pagination"] button:disabled{@apply cursor-not-allowed text-opac
     color: rgb(56 56 56 / var(--tw-text-opacity));
     color: #00539b;
     font-family: 'Roboto';
+    font-weight: 500;
+    }
+   .address-main-sec .address-text {
+    font-family: 'Roboto';
+    font-size: 15px;
+    font-weight: 500;
+   }
+
+    .address-main-sec .icon-row .content-col{
+    color: #00539b;
+    font-family: 'Roboto';
+    font-size: 16px;
     font-weight: 500;
     }
 .address-main-sec .map-sec{ @apply block h-72 -ml-4 w-[100vw] md:hidden}
@@ -999,6 +1026,7 @@ nav[aria-label="Pagination"] button:disabled{@apply cursor-not-allowed text-opac
 .region-list .storelocation-category{  @apply w-1/2 md:w-1/3 lg:w-1/4 px-2 lg:px-4 mb-4 lg:mb-8}
 .region-list .storelocation-category a{  @apply p-6 text-center shadow-[0_3px_5px_rgba(243,243,243,1)] bg-white rounded-md w-full inline-block align-top leading-6 transition-all duration-300 text-sm md:text-base hover:bg-red hover:text-white h-full flex items-center justify-center
 }
+.region-list .storelocation-category  {border: 1px solid #00539b; }
 .content-list.city-page{  @apply pb-10 md:pb-14}
 .city-location .button{  @apply px-6}
 .content-list .c_location{@apply px-2.5 lg:px-4 w-full sm:w-1/2 lg:w-1/3 mb-4 md:mb-8}

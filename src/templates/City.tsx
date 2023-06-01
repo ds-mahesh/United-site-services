@@ -60,7 +60,7 @@ export const config: TemplateConfig = {
       "dm_directoryChildren.hours",
       "dm_directoryChildren.mainPhone",
       // "dm_directoryChildren.what3WordsAddress",
-      "dm_directoryChildren.yextDisplayCoordinate"
+      "dm_directoryChildren.yextDisplayCoordinate",
       // "c_globalData.c_headerLinks1",
       // "c_globalData.c_footerLinks",
       // "c_globalData.facebookPageUrl",
@@ -96,19 +96,16 @@ let slugString = "";
 //   return slugString + document.slug + ".html";
 // };
 export const getPath: GetPath<TemplateProps> = ({ document }) => {
-  var url: any = ""
+  var url: any = "";
   document.dm_directoryParents.map((i: any) => {
-    if (i.meta.entityType.id == 'ce_country') {
-      url = `${i.slug}`
+    if (i.meta.entityType.id == "ce_country") {
+      url = `${i.slug}`;
+    } else if (i.meta.entityType.id == "ce_region") {
+      url = `${url}/${i.slug}/${document.slug.toString()}.html`;
     }
-    else if (i.meta.entityType.id == 'ce_region') {
-      url = `${url}/${i.slug}/${document.slug.toString()}.html`
-    }
-  })
+  });
   return url;
 };
-
-
 
 export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
   relativePrefixToRoot,
@@ -116,8 +113,10 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
   document,
   __meta,
 }): HeadConfig => {
-
-  let metaDescription = document._site ? document._site : "Find your nearest United Site Services and which services are available." + document.name;
+  let metaDescription = document._site
+    ? document._site
+    : "Find your nearest United Site Services and which services are available." +
+      document.name;
   let metaTitle = `United Site Services in ${document.name} | Find a Local Store`;
   // let canonicalURL = document._site.c_metaTags.canonicalURL  ? document._site.c_metaTags.canonicalURL + document.dm_directoryParents[1].name.toLowerCase() +"/"+ document.dm_directoryParents[2].slug +"/"+ document.slug + ".html"  : stagingBaseUrl + document.dm_directoryParents[1].name.toLowerCase() +"/"+ document.dm_directoryParents[2].slug +"/"+ document.slug + ".html"
   // let ogmetaImage = document._site.c_ogmetaTags.oGImage[0].url ? document._site.c_ogmetaTags.oGImage[0].url : "https://cdn.Domino's Pizza.co.uk/en/assets/images/large/IMG_10480.jpg"
@@ -232,7 +231,7 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
         type: "meta",
         attributes: {
           name: "twitter:image",
-          content: `https://www.United Site Services.co.uk/cs/groups/configfiles/documents/document/favicon.ico`
+          content: `https://www.United Site Services.co.uk/cs/groups/configfiles/documents/document/favicon.ico`,
         },
       },
       {
@@ -294,28 +293,30 @@ const City: Template<TemplateRenderProps> = ({
       origin = entity.address.country;
     }
     // let key: any = Object.keys(entity.hours)[0];
-    let detailPageUrl = '';
+    let detailPageUrl = "";
     var name: any = entity.name.toLowerCase();
     var string: any = name.toString();
     let removeSpecialCharacters = string.replace(
       /[&\/\\#^+()$~%.'":*?<>{}!@]/g,
-      "");
+      ""
+    );
     let result: any = removeSpecialCharacters.replaceAll(" ", "-");
     if (!entity.slug || entity.slug == "undefined") {
-      detailPageUrl = `${entity.id}-${result}.html`
-    }
-    else {
-      detailPageUrl = `${entity.slug.toString()}.html`
+      detailPageUrl = `${entity.id}`;
+    } else {
+      detailPageUrl = `${entity.slug.toString()}`;
       console.log(detailPageUrl);
     }
     return (
       <>
-
-
         <div className="w-full sm:w-1/2 xl:w-1/3 px-[15px]">
           <div className="near-location" style={{}}>
             <h4>
-              <Link eventName={"Location detail"} key={entity.slug} href={`/${detailPageUrl}`}>
+              <Link
+                eventName={"Location detail"}
+                key={entity.slug}
+                href={`/${detailPageUrl}`}
+              >
                 {entity.name}
               </Link>
             </h4>
@@ -351,78 +352,33 @@ const City: Template<TemplateRenderProps> = ({
                 <br />
               </p>
             </div>
-            {/* <div className="store-phone w3w">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="21.23"
-              height="30"
-              viewBox="0 0 21.23 30"
-            >
-              <g id="map-pin-icon" transform="translate(0 0)">
-                <path
-                  id="Path_8"
-                  data-name="Path 8"
-                  d="M6.789,23.576c1.079,1.719,2.246,3.8,3.4,5.825.427.747.813.859,1.326-.027,1.113-1.931,2.207-3.931,3.359-5.8,3.5-5.661,9.223-11.181,4.67-18.8C15.5-1.987,4.5-1.265,1.216,5.034c-3.769,7.219,2.117,13.039,5.574,18.542Z"
-                  fill="#d61a0c"
-                  fillRule="evenodd"
-                />
-                <rect
-                  id="Rectangle_230"
-                  data-name="Rectangle 230"
-                  width="1"
-                  height="12"
-                  transform="matrix(0.966, 0.259, -0.259, 0.966, 8.186, 5.075)"
-                  fill="#fff"
-                />
-                <rect
-                  id="Rectangle_231"
-                  data-name="Rectangle 231"
-                  width="1"
-                  height="12"
-                  transform="matrix(0.966, 0.259, -0.259, 0.966, 12.186, 5.075)"
-                  fill="#fff"
-                />
-                <rect
-                  id="Rectangle_232"
-                  data-name="Rectangle 232"
-                  width="1"
-                  height="12"
-                  transform="matrix(0.966, 0.259, -0.259, 0.966, 16.186, 5.075)"
-                  fill="#fff"
-                />
-              </g>
-            </svg>
-            <a
-              target="_blank"
-              href={
-                entity.what3WordsAddress
-                  ? `https://what3words.com/${entity.what3WordsAddress} `
-                  : ""
-              }
-            >
-              What3Words
-            </a>
-          </div> */}
-            {entity.mainPhone && <div className="store-Pizza">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="23.987"
-                height="23.987"
-                viewBox="0 0 23.987 23.987"
-              >
-                <path
-                  d="M19.64,17.328c-.617,1.876-3.036,2.812-4.764,2.656A15.194,15.194,0,0,1,8,17.14,22.652,22.652,0,0,1,.885,8.652C-.22,6.3-.468,3.411,1.176,1.268A2.827,2.827,0,0,1,3.429,0C4.8-.063,4.992.721,5.463,1.943c.351.913.819,1.845,1.08,2.792C7.032,6.5,5.321,6.575,5.105,8.019c-.133.911.969,2.132,1.468,2.781A13.473,13.473,0,0,0,10.051,14c.76.479,1.984,1.341,2.853.865,1.339-.733,1.213-2.991,3.084-2.227a30.12,30.12,0,0,1,2.833,1.463c1.431.769,1.364,1.567.819,3.223h0"
-                  transform="translate(4.5) rotate(13)"
-                  fill="#d61a0c"
-                  fillRule="evenodd"
-                />
-              </svg>
-              <p>
-                <Link eventName={"PhoneNumber"} href={`tel:${entity.mainPhone}`} rel="noopener noreferrer">
-                  {entity.mainPhone}
-                </Link>
-              </p>
-            </div>}
+
+            {entity.mainPhone && (
+              <div className="store-Pizza">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="23.987"
+                  height="23.987"
+                  viewBox="0 0 23.987 23.987"
+                >
+                  <path
+                    d="M19.64,17.328c-.617,1.876-3.036,2.812-4.764,2.656A15.194,15.194,0,0,1,8,17.14,22.652,22.652,0,0,1,.885,8.652C-.22,6.3-.468,3.411,1.176,1.268A2.827,2.827,0,0,1,3.429,0C4.8-.063,4.992.721,5.463,1.943c.351.913.819,1.845,1.08,2.792C7.032,6.5,5.321,6.575,5.105,8.019c-.133.911.969,2.132,1.468,2.781A13.473,13.473,0,0,0,10.051,14c.76.479,1.984,1.341,2.853.865,1.339-.733,1.213-2.991,3.084-2.227a30.12,30.12,0,0,1,2.833,1.463c1.431.769,1.364,1.567.819,3.223h0"
+                    transform="translate(4.5) rotate(13)"
+                    fill="#d61a0c"
+                    fillRule="evenodd"
+                  />
+                </svg>
+                <p>
+                  <Link
+                    eventName={"PhoneNumber"}
+                    href={`tel:${entity.mainPhone}`}
+                    rel="noopener noreferrer"
+                  >
+                    {entity.mainPhone}
+                  </Link>
+                </p>
+              </div>
+            )}
 
             <div className="store-link flex">
               <Link
@@ -446,7 +402,20 @@ const City: Template<TemplateRenderProps> = ({
                     fill="#fff"
                   />
                 </svg>{" "}
-                <div className="card-img-top rounded-lg" style={{ backgroundColor: "green", fontSize: "16px", paddingTop: "5px", paddingLeft: "10px", height: "30px", width: "120px" }}> Get Directions</div>
+                <div
+                  className="card-img-top rounded-lg"
+                  style={{
+                    backgroundColor: "green",
+                    fontSize: "16px",
+                    paddingTop: "5px",
+                    paddingLeft: "10px",
+                    height: "30px",
+                    width: "120px",
+                  }}
+                >
+                  {" "}
+                  Get Directions
+                </div>
               </Link>
               <a className="view-details" href={`/${detailPageUrl}`}>
                 <svg
@@ -468,8 +437,20 @@ const City: Template<TemplateRenderProps> = ({
                     />
                   </g>
                 </svg>{" "}
-                <div className="card-img-top rounded-lg" style={{ backgroundColor: "green", fontSize: "16px", paddingTop: "5px", paddingLeft: "10px", height: "30px", width: "120px" }}> View Details</div>
-
+                <div
+                  className="card-img-top rounded-lg"
+                  style={{
+                    backgroundColor: "green",
+                    fontSize: "16px",
+                    paddingTop: "5px",
+                    paddingLeft: "10px",
+                    height: "30px",
+                    width: "120px",
+                  }}
+                >
+                  {" "}
+                  View Details
+                </div>
               </a>
             </div>
           </div>
@@ -615,10 +596,9 @@ const City: Template<TemplateRenderProps> = ({
         }}
       /> */}
       <AnalyticsProvider
-
         templateData={templateData}
-      // enableDebugging={AnalyticsEnableDebugging}
-      // enableTrackingCookie={AnalyticsEnableTrackingCookie}
+        // enableDebugging={AnalyticsEnableDebugging}
+        // enableTrackingCookie={AnalyticsEnableTrackingCookie}
       >
         <AnalyticsScopeProvider name={""}>
           <PageLayout _site={_site} templateData={{ __meta, document }}>
@@ -633,32 +613,27 @@ const City: Template<TemplateRenderProps> = ({
             </div>
             <div style={{ backgroundColor: "lightgreen" }}>
               <h1 className="sec_heading mt-12" style={{ textAlign: "center" }}>
-                Available Stores in {name}, {document.dm_directoryParents[2].name},{" "}
+                Available Stores in {name},{" "}
+                {document.dm_directoryParents[2].name},{" "}
                 {document.dm_directoryParents[1].name}{" "}
               </h1>
-              <div className="directory-country nearby-sec" style={{ backgroundColor: "lightcyan" }}>
-                <div className="container" >
-                  <div className="flex  flex-wrap justify-center -mx-[15px]" style={{}}>
+              <div
+                className="directory-country nearby-sec"
+                style={{ backgroundColor: "lightcyan" }}
+              >
+                <div className="container">
+                  <div
+                    className="flex  flex-wrap justify-center -mx-[15px]"
+                    style={{}}
+                  >
                     {childrenDivs}
                   </div>
                 </div>
               </div>
             </div>
-          </PageLayout  >
+          </PageLayout>
         </AnalyticsScopeProvider>
-
       </AnalyticsProvider>
-      {/* 
-      <Footer
-        data={c_footerLinks ? c_footerLinks : []}
-        address={address ? address : {}}
-        c_companyrn={c_companyrn ? c_companyrn : ""}
-        c_phoneNumber={c_phoneNumber ? c_phoneNumber : ""}
-        facebookPageUrl={facebookPageUrl ? facebookPageUrl : ""}
-        instagramHandle={instagramHandle ? instagramHandle : ""}
-        twitterHandle={twitterHandle ? twitterHandle : ""}
-        c_tikTok={c_tikTok ? c_tikTok : ""}
-      /> */}
     </>
   );
 };

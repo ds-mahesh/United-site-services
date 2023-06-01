@@ -15,10 +15,11 @@ import constant from "../constant";
 import Banner from "../components/locationDetail/banner";
 import { StaticData } from "../../sites-global/staticData";
 import PageLayout from "../components/layouts/PageLayout";
-import { favicon, regionNames, stagingBaseurl } from "../../sites-global/global";
-
-
-
+import {
+  favicon,
+  regionNames,
+  stagingBaseurl,
+} from "../../sites-global/global";
 
 /**
  * Required when Knowledge Graph data is used for a template.
@@ -47,12 +48,13 @@ export const config: TemplateConfig = {
       "dm_directoryChildren.slug",
       "dm_directoryChildren.dm_directoryChildren.name",
       "dm_directoryChildren.dm_baseEntityCount",
+      "dm_directoryChildren.c_addressRegionDisplayName",
       "dm_directoryChildren.dm_directoryChildren.slug",
       "dm_directoryChildren.dm_directoryChildren.dm_directoryChildren.name",
-      "dm_directoryChildren.dm_directoryChildren.dm_directoryChildren.slug"
+      "dm_directoryChildren.dm_directoryChildren.dm_directoryChildren.slug",
     ],
     // Defines the scope of entities that qualify for this stream.
-    filter: { 
+    filter: {
       // entityTypes: ["Country"],
       savedFilterIds: ["dm_stores-directory_address_countrycode"],
     },
@@ -64,7 +66,6 @@ export const config: TemplateConfig = {
   },
 };
 
-
 export const getPath: GetPath<TemplateProps> = ({ document }) => {
   currentUrl = "/" + document.slug.toString() + ".html";
   return "/" + document.slug.toString() + ".html";
@@ -74,13 +75,11 @@ export const getPath: GetPath<TemplateProps> = ({ document }) => {
 //   return [`index-old/${document.id.toString()}`];
 // };
 
-
 export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
   relativePrefixToRoot,
   path,
   document,
 }): HeadConfig => {
-  
   return {
     title: document.name,
     charset: "UTF-8",
@@ -95,17 +94,14 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
       {
         type: "link",
         attributes: {
-          rel: 'icon',
-          type: 'image/x-icon',
-          href: favicon
+          rel: "icon",
+          type: "image/x-icon",
+          href: favicon,
         },
-      }
+      },
     ],
   };
 };
-
-
-
 
 const country: Template<TemplateRenderProps> = ({
   relativePrefixToRoot,
@@ -120,85 +116,93 @@ const country: Template<TemplateRenderProps> = ({
     c_locatorBannerImage,
     c_locatorBannerTitle,
     dm_directoryParents,
-    dm_directoryChildren
+    dm_directoryChildren,
   } = document;
-  const childrenDivs = dm_directoryChildren ? dm_directoryChildren.map((entity: any) => {
-    let detlslug;
+  const childrenDivs = dm_directoryChildren
+    ? dm_directoryChildren.map((entity: any) => {
+        let detlslug;
 
+        if (typeof entity.dm_directoryChildren != "undefined") {
+          if (entity.dm_baseEntityCount == 1) {
+            entity.dm_directoryChildren.map((res: any) => {
+              let detlslug1 = "";
 
-    if (typeof entity.dm_directoryChildren != "undefined") {
-      if (entity.dm_baseEntityCount == 1) {
-        entity.dm_directoryChildren.map((res: any) => {
+              // if (!res.slug) {
+              //   let slugString = res.id + " " + res.name;
+              //   let slug = slugString;
+              //   detlslug1 = `${slug}.html`;
+              // } else {
+              //   detlslug1 = `${res.slug.toString()}.html`;
+              // }
+              // if (res.meta.entityType.id == 'ce_city') {
+              //   detlslug1 = "gb/" + detlslug1;
+              // } else {
+              //   detlslug1 = detlslug1;
+              // }
 
-          let detlslug1 = "";
+              // console.log(entity.name, res);
 
-          if (!res.slug) {
-            let slugString = res.id + " " + res.name;
-            let slug = slugString;
-            detlslug1 = `${slug}.html`;
+              res.dm_directoryChildren
+                ? res.dm_directoryChildren.map((detl: any) => {
+                    if (!detl.slug) {
+                      let slugString = detl.id + " " + detl.name;
+                      let slug = slugString;
+                      detlslug1 = `${slug}.html`;
+                    } else {
+                      detlslug1 = `${detl.slug.toString()}`;
+                    }
+
+                    detlslug = detlslug1;
+                  })
+                : (detlslug = detlslug1);
+            });
           } else {
-            detlslug1 = `${res.slug.toString()}.html`;
+            detlslug = slug + "/" + entity.slug + ".html";
           }
-          // if (res.meta.entityType.id == 'ce_city') {
-          //   detlslug1 = "gb/" + detlslug1;
-          // } else {
-          //   detlslug1 = detlslug1;
-          // }
+        }
 
-          // console.log(entity.name, res);
+        return (
+          <li className=" storelocation-category rounded-md">
+            <a key={entity.slug} href={detlslug}>
+              {entity.name} ({entity.dm_baseEntityCount})
+            </a>
+          </li>
+        );
+      })
+    : null;
 
-          res.dm_directoryChildren ? res.dm_directoryChildren.map((detl: any) => {
-
-            if (!detl.slug) {
-              let slugString = detl.id + " " + detl.name;
-              let slug =slugString;
-              detlslug1 = `${slug}.html`;
-            } else {
-              detlslug1 = `${detl.slug.toString()}.html`;
-            }
-
-            detlslug = detlslug1;
-
-          }) : detlslug = detlslug1;
-
-
-        })
-      }
-      else {
-        detlslug = slug + "/" + entity.slug + ".html";
-      }
-    }
-
-    return (
-      <li className=" storelocation-category">
-        <a
-          key={entity.slug}
-          href={slug +"/"+ entity.slug + ".html"}
-        >
-          {entity.name} ({entity.dm_baseEntityCount})
-        </a>
-      </li>
-    )
-  }) : null;
-
-
-  let bannerimage = c_locatorBannerImage ? c_locatorBannerImage.map((element: any) => {
-    return element.url
-  }) : null;
+  let bannerimage = c_locatorBannerImage
+    ? c_locatorBannerImage.map((element: any) => {
+        return element.url;
+      })
+    : null;
 
   return (
     <>
       <PageLayout _site={_site}>
-        <BreadCrumbs
-          name={regionNames.of(name)}
-          address={address}
-          parents={dm_directoryParents}
-          baseUrl={relativePrefixToRoot}
-        ></BreadCrumbs>
+        <div className="banner">
+          <div className="locator-banner">
+            <img src={_site.c_locatorbanner.url} alt={""} />
+          </div>
+          <div className="blur-banner">
+            <div className="image-color country-banner">
+              <div className="country-breadcrumb pl-6">
+                {" "}
+                <BreadCrumbs
+                  name={regionNames.of(name)}
+                  address={address}
+                  parents={dm_directoryParents}
+                  baseUrl={relativePrefixToRoot}
+                ></BreadCrumbs>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* <div className="location-dtl">
           <Banner name={regionNames.of(name)} c_bannerImage={bannerimage} />
         </div> */}
-        <div className="content-list" style={{backgroundColor:"lightgreen"}}>
+        <div className="content-list">
           <div className="container">
             <div className="sec-title">
               <h2 style={{ textAlign: "center" }}>
@@ -206,14 +210,9 @@ const country: Template<TemplateRenderProps> = ({
               </h2>
             </div>
 
-            <ul className="region-list">
-
-              {childrenDivs}
-            </ul>
-
+            <ul className="region-list">{childrenDivs}</ul>
           </div>
         </div>
-       
       </PageLayout>
     </>
   );
