@@ -106,17 +106,17 @@ export const config: TemplateConfig = {
 export const getPath: GetPath<TemplateProps> = ({ document }) => {
   // var url = "";
   // var name: any = document.name.toLowerCase();
-  // var string: any = name.toString();;
+  // var string: any = name.toString();
   // let result: any = string.replaceAll(" ", "-");
-  // document.dm_directoryParents.map((result: any, i: Number) => {
+  // document.dm_directoryParents.map((result: any, i: number) => {
   //   if (i > 0) {
-  //     url += result.slug + "/"
+  //     url += result.slug + "/";
   //   }
-  // })
+  // });
   // if (!document.slug) {
-  //   url += `${result}.html`;
+  //   url = `${result}.html`;
   // } else {
-  //   url += `${document.slug.toString()}.html`;
+  //   url = `${document.slug.toString()}.html`;
   // }
 
   return document.id;
@@ -303,6 +303,7 @@ const Location: Template<ExternalApiRenderData> = ({
     name,
     c_locatorbanner,
     dm_directoryParents,
+    c_getQuote,
   } = document;
 
   let templateData = { document: document, __meta: __meta };
@@ -519,6 +520,7 @@ const Location: Template<ExternalApiRenderData> = ({
                 }
                 hours={hours}
                 additionalHoursText={additionalHoursText}
+                c_getQuote={c_getQuote}
               ></Contact>
               {hours ? (
                 <div className="map-sec" id="map_canvas">

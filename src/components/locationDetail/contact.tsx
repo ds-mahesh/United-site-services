@@ -10,7 +10,7 @@ import { StaticData } from "../../../sites-global/staticData";
 import Holidayhours from "./Holdayhours";
 import Model from "./Model";
 import CustomMap from "./CustomMap";
-import locationsvg from "../../images/location-pinnew.svg"
+import locationsvg from "../../images/location-pinnew.svg";
 import OpenClose from "../commons/openClose";
 
 const Contact = (props: any) => {
@@ -26,16 +26,25 @@ const Contact = (props: any) => {
     c_storeInfoHeading,
     c_getDirectionsCTAText,
     name,
-    timezone
+    timezone,
+    c_getQuote,
   } = props;
   return (
     <>
       <div className="address-main-sec">
         {/* <h4 className="box-title">{c_storeInfoHeading?c_storeInfoHeading:"Branch Address"}</h4> */}
-           <div className="location-pagename flex space-x-2">
-              <img className=" " src={locationsvg} width="20" height="20" alt="mapimage" />
-              <h4 className="box-title">{name}, {address.region} {address.postalCode}</h4>
-            </div>
+        <div className="location-pagename flex space-x-2">
+          <img
+            className=" "
+            src={locationsvg}
+            width="20"
+            height="20"
+            alt="mapimage"
+          />
+          <h4 className="box-title">
+            {name}, {address.region} {address.postalCode}
+          </h4>
+        </div>
         <div className="icon-row content-col">
           <div className="icon">
             {" "}
@@ -44,46 +53,57 @@ const Contact = (props: any) => {
           <div className="  address-text notHighlight">
             {address.line1}
             <div>{address.line2 && <div>{address.line2}</div>}</div>
-            <div>{address.city}, {address.region} {address.postalCode}</div>
+            <div>
+              {address.city}, {address.region} {address.postalCode}
+            </div>
             <div></div>
           </div>
         </div>
 
         {phone ? (
           <>
-          <div className="icon-row">
-            <div className="icon">
-              {" "}
-              <img className=" " src={Phonesvg} width="22" height="22" alt="phonesvg" />
+            <div className="icon-row">
+              <div className="icon">
+                {" "}
+                <img
+                  className=" "
+                  src={Phonesvg}
+                  width="22"
+                  height="22"
+                  alt="phonesvg"
+                />
+              </div>
+              <div className="content-col">Telephone</div>
             </div>
-            <div className="content-col">
-             Telephone
-            </div>
-          </div>
-           <a id="address" className=" location-phn" href={`tel:${phone}`}>
-                {phone}
-              </a>
-              </>
+            <a id="address" className=" location-phn" href={`tel:${phone}`}>
+              {phone}
+            </a>
+          </>
         ) : (
           ""
         )}
-           {/* <OpenClose timezone={timezone} hours={hours} /> */}
+        {/* <OpenClose timezone={timezone} hours={hours} /> */}
 
-        <ul className="">
-          <li className="button-bx direction-button">
+        <div className=" flex space-x-4">
+          <div className="getquote-cta">
+            <a href={c_getQuote?.link}>{c_getQuote?.label}</a>{" "}
+          </div>
+          <div className="button-bx direction-button">
             <GetDirection
-              buttonText={c_getDirectionsCTAText?c_getDirectionsCTAText:StaticData.getDirection}
+              buttonText={
+                c_getDirectionsCTAText
+                  ? c_getDirectionsCTAText
+                  : StaticData.getDirection
+              }
               address={address}
               latitude={latitude}
               longitude={longitude}
             />
-          </li>
-        </ul>
-
+          </div>
+        </div>
         <div className="map-sec">
           <CustomMap prop={yextDisplayCoordinate} />
         </div>
-
       </div>
 
       {hours && typeof hours.monday != "undefined" ? (

@@ -277,12 +277,24 @@ const region: Template<TemplateRenderProps> = ({
   return (
     <>
       <PageLayout _site={_site}>
-        <BreadCrumbs
-          name={name}
-          parents={dm_directoryParents}
-          baseUrl={relativePrefixToRoot}
-          address={address}
-        ></BreadCrumbs>
+        <div className="banner">
+          <div className="locator-banner">
+            <img src={_site.c_locatorbanner.url} alt={""} />
+          </div>
+          <div className="blur-banner">
+            <div className="image-color country-banner">
+              <div className="country-breadcrumb pl-6">
+                {" "}
+                <BreadCrumbs
+                  name={name}
+                  address={address}
+                  parents={dm_directoryParents}
+                  baseUrl={relativePrefixToRoot}
+                ></BreadCrumbs>
+              </div>
+            </div>
+          </div>
+        </div>
         {/* <div className="location-dtl">     <Banner name={c_bannerHeading?c_bannerHeading:name} c_bannerImage={bannerimage}  /></div> */}
 
         <div

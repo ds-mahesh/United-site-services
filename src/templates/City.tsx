@@ -611,9 +611,9 @@ const City: Template<TemplateRenderProps> = ({
             <div className="header-title ">
               {/* <Herobanner c_bannerTitle={_site.c_bannerTitle}></Herobanner> */}
             </div>
-            <div style={{ backgroundColor: "lightgreen" }}>
+            <div>
               <h1 className="sec_heading mt-12" style={{ textAlign: "center" }}>
-                Available Stores in {name},{" "}
+                Available Services in {name},{" "}
                 {document.dm_directoryParents[2].name},{" "}
                 {document.dm_directoryParents[1].name}{" "}
               </h1>
