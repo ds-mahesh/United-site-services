@@ -62,10 +62,10 @@ export const getPath: GetPath<TemplateProps> = ({ document }) => {
   let url = "";
   document.dm_directoryParents.map((i: any) => {
     if (i.meta.entityType.id == "ce_country") {
-      url += i.slug + "/";
+      url = i.slug + "/";
     }
   });
-  url += document.slug.toString();
+  url = document.slug.toString();
 
   return url + ".html";
 };
@@ -253,7 +253,7 @@ const region: Template<TemplateRenderProps> = ({
                 let slug = slugString;
                 detlslug1 = `${slug}.html`;
               } else {
-                detlslug1 = `${res.slug.toString()}.html`;
+                detlslug1 = `${res.slug.toString()}`;
               }
 
               detlslug = detlslug1;
@@ -265,7 +265,7 @@ const region: Template<TemplateRenderProps> = ({
 
         return (
           <li className=" storelocation-category">
-            <a key={entity.slug} href={slug + "/" + entity.slug + ".html"}>
+            <a key={entity.slug} href={detlslug}>
               {entity.name} ({entity.dm_baseEntityCount})
             </a>
           </li>
@@ -297,10 +297,7 @@ const region: Template<TemplateRenderProps> = ({
         </div>
         {/* <div className="location-dtl">     <Banner name={c_bannerHeading?c_bannerHeading:name} c_bannerImage={bannerimage}  /></div> */}
 
-        <div
-          className="content-list"
-          style={{ backgroundColor: "lightskyblue" }}
-        >
+        <div className="content-list">
           <div className="container">
             <div className="sec-title">
               <h2 style={{ textAlign: "center" }}>{name}</h2>

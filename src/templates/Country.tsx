@@ -157,7 +157,7 @@ const country: Template<TemplateRenderProps> = ({
                 : (detlslug = detlslug1);
             });
           } else {
-            detlslug = slug + "/" + entity.slug + ".html";
+            detlslug = entity.slug + ".html";
           }
         }
 
