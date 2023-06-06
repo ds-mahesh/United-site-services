@@ -602,12 +602,24 @@ const City: Template<TemplateRenderProps> = ({
       >
         <AnalyticsScopeProvider name={""}>
           <PageLayout _site={_site} templateData={{ __meta, document }}>
-            <BreadCrumbs
-              name={name}
-              parents={dm_directoryParents}
-              baseUrl={relativePrefixToRoot}
-              address={{}}
-            ></BreadCrumbs>
+            <div className="banner">
+              <div className="locator-banner">
+                <img src={_site.c_locatorbanner.url} alt={""} />
+              </div>
+              <div className="blur-banner">
+                <div className="image-color country-banner">
+                  <div className="country-breadcrumb pl-6">
+                    {" "}
+                    <BreadCrumbs
+                      name={name}
+                      address={address}
+                      parents={dm_directoryParents}
+                      baseUrl={relativePrefixToRoot}
+                    ></BreadCrumbs>
+                  </div>
+                </div>
+              </div>
+            </div>
             <div className="header-title ">
               {/* <Herobanner c_bannerTitle={_site.c_bannerTitle}></Herobanner> */}
             </div>

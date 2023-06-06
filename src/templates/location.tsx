@@ -482,7 +482,8 @@ const Location: Template<ExternalApiRenderData> = ({
                       {name}, {address.region}
                     </h2>
                     <span>
-                      {address.city}, {address.postalCode}
+                      Portable toilet rentals in {address.city},{" "}
+                      {address.postalCode}
                     </span>
                   </div>
                 </div>
