@@ -2,7 +2,7 @@ import * as React from "react";
 import { CardComponent } from "@yext/search-ui-react";
 import { Location } from "../../types/search/locations";
 import GetDirection from "../commons/GetDirection";
-import redmapimage from "../../images/red-map.svg";
+// import redmapimage from "../../images/red-map.svg";
 import Phonesvg from "../../images/phone.svg";
 import timesvg from "../../images/timericon.svg";
 import locationsvg from "../../images/location-pinnew.svg";
@@ -42,15 +42,6 @@ const LocationCard: CardComponent<Location> = ({ result }) => {
         .querySelector(".storelocation-openCloseTime")
         .classList.add("hidden");
       setHoursopen(false);
-    }
-  }
-
-  function show_hide() {
-    var click: any = document.getElementById("list-hours");
-    if (click.style.display === "none") {
-      click.style.display = "block";
-    } else {
-      click.style.display = "none";
     }
   }
 
@@ -98,7 +89,6 @@ const LocationCard: CardComponent<Location> = ({ result }) => {
                     height="20"
                     alt={""}
                   />
-                  {/* <span className="map-count">D</span> */}
                 </div>
                 <h2>
                   <Link
@@ -120,9 +110,6 @@ const LocationCard: CardComponent<Location> = ({ result }) => {
                   ""
                 )}
               </div>
-              {/* <div className="icon-row content-col address-with-availablity notHighlight"> */}
-              {/* <div className="smalllocationcard"> */}
-              {/* <div className="w-full"> */}
               <div className="address-cta flex">
                 <div className="addsec">
                   <Address address={address} />
@@ -163,7 +150,6 @@ const LocationCard: CardComponent<Location> = ({ result }) => {
                         </>
                       ) : (
                         <>
-                          {/* <img src="https://www.freeiconspng.com/thumbs/timer-icon/timer-icon-15.png" width="20" height="20" alt=''/> */}
                           <div className="timer-img ">
                             <img src={timesvg} alt={""} />
                           </div>
@@ -175,7 +161,7 @@ const LocationCard: CardComponent<Location> = ({ result }) => {
                             }}
                           >
                             <button
-                              onClick={show_hide}
+                              onClick={() => setHoursopen(!hoursopen)}
                               className=" flex open-now-string items-center"
                               data-id={`main-shop-${result.rawData.id}`}
                             >
@@ -191,12 +177,8 @@ const LocationCard: CardComponent<Location> = ({ result }) => {
                                 style={{ marginLeft: "5px", marginTop: "5px" }}
                               />
                             </button>
-                            <div
-                              id="list-hours"
-                              className="dropdown-content"
-                              style={{ display: "none" }}
-                            >
-                              <Hours hours={hours} />
+                            <div id="list-hours" className="dropdown-content">
+                              {hoursopen ? <Hours hours={hours} /> : null}
                             </div>
                           </div>
                         </>
@@ -273,9 +255,6 @@ const LocationCard: CardComponent<Location> = ({ result }) => {
         </div>
       </div>
     </div>
-    // </div>
-    /* </div> */
-    // </div>
   );
 };
 

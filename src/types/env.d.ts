@@ -8,3 +8,6 @@
  interface ImportMeta {
     readonly env: any,
   }
+ declare module '*.svg';
+ declare module '*.jpg';
+ declare module '*.png';

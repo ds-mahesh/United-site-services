@@ -9,8 +9,6 @@ import { JsonLd } from "react-schemaorg";
 import Opening from "../components/commons/openClose";
 import { nearByLocation } from "../types/nearByLocation";
 import locationsvg from "../images/location-pinnew.svg";
-// import Logo from "../images/logo-header.svg"
-// import offerBanner from "../images/offer-banner.jpg"
 import IframeMap from "../components/locationDetail/IframeMap";
 import "../index.css";
 import {
@@ -305,7 +303,7 @@ const Location: Template<ExternalApiRenderData> = ({
     dm_directoryParents,
     c_getQuote,
   } = document;
-
+  // console.log(timezone, "timer");
   let templateData = { document: document, __meta: __meta };
   let hoursSchema = [];
   let breadcrumbScheme = [];
@@ -495,14 +493,14 @@ const Location: Template<ExternalApiRenderData> = ({
               parents={dm_directoryParents}
               baseUrl={relativePrefixToRoot}
             ></BreadCrumbs>
-            <div className="container">
+            {/* <div className="container">
               <div className="banner-text banner-dark-bg justify-center text-center">
-                {/* <h1 className="">{name}</h1> */}
+                <h1 className="">{name}</h1>
                 <div className="openClosestatus detail-page closeing-div">
                   <OpenClose timezone={timezone} hours={hours} />
                 </div>
               </div>
-            </div>
+            </div> */}
             <div className="location-information">
               <Contact
                 name={name}
@@ -519,6 +517,7 @@ const Location: Template<ExternalApiRenderData> = ({
                     ? yextDisplayCoordinate.longitude
                     : displayCoordinate?.longitude
                 }
+                timezone={timezone}
                 hours={hours}
                 additionalHoursText={additionalHoursText}
                 c_getQuote={c_getQuote}

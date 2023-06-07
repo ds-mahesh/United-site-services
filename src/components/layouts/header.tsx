@@ -3,10 +3,6 @@ import "../../index.css";
 const Header = (props: any) => {
   const { label, images, _site } = props;
 
-  React.useEffect(() => {
-    document.body.setAttribute("id", "body");
-  });
-
   const Headermenus = props?._site?.c_headerMenus?.map((link: any, i: any) => (
     <li>
       <a key={i} href={link?.link}>

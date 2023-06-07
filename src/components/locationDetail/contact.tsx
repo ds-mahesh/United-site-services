@@ -4,6 +4,7 @@ import Hours from "../commons/hours";
 import woodtexture from "../../images/wood-texture.jpg";
 import mapimage from "../../images/map.svg";
 import Phonesvg from "../../images/phone.svg";
+import timesvg from "../../images/timericon.svg";
 import Address from "../commons/Address";
 import GetDirection from "../commons/GetDirection";
 import { StaticData } from "../../../sites-global/staticData";
@@ -12,6 +13,7 @@ import Model from "./Model";
 import CustomMap from "./CustomMap";
 import locationsvg from "../../images/location-pinnew.svg";
 import OpenClose from "../commons/openClose";
+// import Timer from "../locationDetail/countdown";
 
 const Contact = (props: any) => {
   const {
@@ -29,6 +31,7 @@ const Contact = (props: any) => {
     timezone,
     c_getQuote,
   } = props;
+  // console.log(timezone, "timer");
   return (
     <>
       <div className="address-main-sec">
@@ -62,7 +65,7 @@ const Contact = (props: any) => {
 
         {phone ? (
           <>
-            <div className="icon-row">
+            <div className="icon-row phone-num">
               <div className="icon">
                 {" "}
                 <img
@@ -74,16 +77,33 @@ const Contact = (props: any) => {
                 />
               </div>
               <div className="content-col">Telephone</div>
+              <div>
+                {" "}
+                <a id="address" className=" location-phn" href={`tel:${phone}`}>
+                  {phone}
+                </a>
+              </div>
             </div>
-            <a id="address" className=" location-phn" href={`tel:${phone}`}>
-              {phone}
-            </a>
           </>
         ) : (
           ""
         )}
-        {/* <OpenClose timezone={timezone} hours={hours} /> */}
-
+        <div className="container">
+          <div className="banner-text banner-dark-bg text-center flex space-x-1">
+            <div className="timer-img">
+              <img
+                className=""
+                src={timesvg}
+                width="22"
+                height="22"
+                alt="timersvg"
+              />
+            </div>
+            <div className="openClosestatus detail-page closeing-div">
+              <OpenClose timezone={timezone} hours={hours} />
+            </div>
+          </div>
+        </div>
         <div className=" flex space-x-4">
           <div className="getquote-cta">
             <a href={c_getQuote?.link}>{c_getQuote?.label}</a>{" "}

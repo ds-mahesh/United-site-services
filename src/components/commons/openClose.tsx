@@ -186,8 +186,6 @@ export const OpenStausFunctions = {
 
     const statusclass = "";
 
-   
-
     if (openRightNow) {
       // console.log("openRightNow");
 
@@ -199,10 +197,9 @@ export const OpenStausFunctions = {
       } else {
         return (
           <div className={"opendot green-dot"}>
-           
             <div className="hours-info ">
               {" "}
-              <span className="font-second-main-font "> Open Now - </span>
+              <span className="font-second-main-font "> Open Now </span>
               {/* <span className="lowercase">
                 {OpenStausFunctions.formatTime(currentInterval.start).replace(
                   ":00",
@@ -210,7 +207,7 @@ export const OpenStausFunctions = {
                 )}
               </span>{" "} */}
               {/* to{" "} */}
-              Closes at {" "}
+              Closes at{" "}
               <span className="uppercase">
                 {OpenStausFunctions.formatTime(currentInterval.end).replace(
                   ":00",
@@ -228,7 +225,6 @@ export const OpenStausFunctions = {
         return (
           <div className={"closeddot 4"}>
             <div className="red-dot">
-            
               <div className="hours-info ">
                 <span className="font-second-main-font "> Closed - </span>
                 {"Opens at "}
@@ -247,7 +243,6 @@ export const OpenStausFunctions = {
         return (
           <div className={"closeddot 3"}>
             <div className="red-dot">
-             
               <div className="hours-info ">
                 <span className="font-second-main-font">Closed - </span>
                 {"Opens at "}
@@ -266,14 +261,13 @@ export const OpenStausFunctions = {
       return (
         <div className="closeddot 2">
           <div className="red-dot">
-           
             <div className="hours-info ">Closed</div>{" "}
           </div>
         </div>
       );
     }
   },
-  getYextTimeWithUtcOffset: (entityUtcOffsetSeconds:number) => {
+  getYextTimeWithUtcOffset: (entityUtcOffsetSeconds: number) => {
     const now = new Date();
     let utcOffset = 0;
     if (entityUtcOffsetSeconds) {
@@ -285,7 +279,7 @@ export const OpenStausFunctions = {
     }
     return now;
   },
-  parseTimeZoneUtcOffset: (timeString:string) => {
+  parseTimeZoneUtcOffset: (timeString: string) => {
     if (!timeString) {
       return 0;
     }
@@ -362,7 +356,7 @@ export const OpenStausFunctions = {
       hour12: true,
     });
   },
-  getUtcOffsetFromTimeZone: (timeZone, date = new Date()) => {
+  getUtcOffsetFromTimeZone: (timeZone: any, date = new Date()) => {
     const tz = date
       .toLocaleString("en-gb", { timeZone, timeStyle: "long" })
       .split(" ")
@@ -372,7 +366,7 @@ export const OpenStausFunctions = {
       Date.parse(`${dateString} UTC`) - Date.parse(`${dateString} ${tz}`);
     return OpenStausFunctions.msToTime(offset);
   },
-  msToTime: (duration) => {
+  msToTime: (duration: number) => {
     let milliseconds = Math.floor((duration % 1000) / 100),
       seconds = Math.floor((duration / 1000) % 60),
       minutes = Math.floor((duration / (1000 * 60)) % 60),
@@ -415,9 +409,7 @@ export default function OpenClose(props: any) {
         //  <div class="closeing-div notHighlight" dangerouslySetInnerHTML={{__html: OpenStausFunctions.formatOpenNowString(props.hours, props.timezone)}} />
         <div className="closeing-div notHighlight">
           {/* {OpenStausFunctions.formatOpenNowString(props.hours, props.timezone)}{" "} */}
-          {
-            OpenStausFunctions.formatOpenNowString(props.hours, props.timezone)}
-         
+          {OpenStausFunctions.formatOpenNowString(props.hours, props.timezone)}
         </div>
       ) : (
         <div className="closeddot  1">
@@ -443,6 +435,6 @@ export default function OpenClose(props: any) {
     </>
   );
 }
-// function formatTime(end: any): string {
-//   throw new Error("Function not implemented.");
-// }
+function formatTime(end: any): string {
+  throw new Error("Function not implemented.");
+}

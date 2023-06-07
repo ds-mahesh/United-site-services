@@ -217,7 +217,7 @@ const Locator: Template<TemplateRenderProps> = ({ document, __meta }) => {
         item={{
           "@context": "https://schema.org",
           "@type": "Organization",
-          name: "MGM ",
+          name: "USS ",
           url: stagingBaseurl,
           logo: favicon,
         }}

@@ -5,24 +5,18 @@ import Header from "./header";
 
 type Props = {
   title?: string;
-  _site?: any;
+  _site?: string;
   global?: any;
   children?: React.ReactNode;
-   templateData?: React.ReactNode;
+  templateData?: React.ReactNode;
 };
 
-const PageLayout = ({
-  title,
-  _site,
-  global,
-  children,
-}: Props) => {
+const PageLayout = ({ title, _site, global, children }: Props) => {
   return (
     <>
       <Header _site={_site} />
       {children}
       <Footer _site={_site} />
-
     </>
   );
 };
