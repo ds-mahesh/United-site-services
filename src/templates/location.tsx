@@ -8,7 +8,6 @@ import { CustomFieldDebuggerReactProvider } from "@yext/custom-field-debugger";
 import { JsonLd } from "react-schemaorg";
 import Opening from "../components/commons/openClose";
 import { nearByLocation } from "../types/nearByLocation";
-import locationsvg from "../images/location-pinnew.svg";
 import IframeMap from "../components/locationDetail/IframeMap";
 import "../index.css";
 import {
@@ -82,6 +81,8 @@ export const config: TemplateConfig = {
       "dm_directoryParents.meta.entityType",
       "c_getQuote",
       "c_locatorbanner",
+      "c_faq.question",
+      "c_faq.answer",
     ],
     // Defines the scope of entities that qualify for this stream.
     filter: {
@@ -302,6 +303,7 @@ const Location: Template<ExternalApiRenderData> = ({
     c_locatorbanner,
     dm_directoryParents,
     c_getQuote,
+    c_faq,
   } = document;
   // console.log(timezone, "timer");
   let templateData = { document: document, __meta: __meta };
@@ -309,7 +311,7 @@ const Location: Template<ExternalApiRenderData> = ({
   let breadcrumbScheme = [];
   for (var key in hours) {
     if (hours.hasOwnProperty(key)) {
-      let openIntervalsSchema = "";
+      let openIntervalsSchema = {};
       if (key !== "holidayHours") {
         if (hours[key].isClosed) {
           openIntervalsSchema = {
@@ -544,7 +546,7 @@ const Location: Template<ExternalApiRenderData> = ({
                 </div>
               )}
             </div>
-
+            <Faq faqs={c_faq} />
             <div className="nearby-sec">
               <div className="container">
                 <div className="sec-title">
