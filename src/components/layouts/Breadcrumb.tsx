@@ -57,7 +57,7 @@ const BreadCrumbs = (props: data) => {
         <li key={crumb.slug}>
           {crumb.count == 1 ? (
             <Link
-              href="javascript:void(0)"
+              href={"/" + crumb.slug + ".html"}
               className="cursor-allowed"
               data-ya-track="Breadcrumbs"
               eventName={`Breadcrumbs`}
