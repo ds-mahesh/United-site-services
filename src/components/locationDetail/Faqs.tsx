@@ -60,7 +60,7 @@ export default function Faq(props: any) {
   return (
     <>
       <div className=" faq-main-sec">
-        <div className=" faq-card ">
+        <div className="  ">
           <div className="faq-sec-inner">
             <h2 className="">
               {props.c_fAQsHeading

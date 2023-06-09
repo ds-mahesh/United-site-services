@@ -7,6 +7,9 @@ import * as React from "react";
 // import { stagingBaseUrl } from "../constants";
 // import bannerImage from "../images/app-bg.png";
 // import favicon from "../images/favicon-live.png";
+import Phonesvg from "../images/phone.svg";
+import timesvg from "../../images/timericon.svg";
+import locationsvg from "../images/location-pinnew.svg";
 import {
   AnalyticsProvider,
   AnalyticsScopeProvider,
@@ -32,6 +35,7 @@ import {
 import { JsonLd } from "react-schemaorg";
 import PageLayout from "../components/layouts/PageLayout";
 import BreadCrumbs from "../components/layouts/Breadcrumb";
+import { formatPhoneNumber } from "react-phone-number-input";
 // import Herobanner from "../components/commons/Herobanner";
 var currentUrl = "";
 export const config: TemplateConfig = {
@@ -310,36 +314,29 @@ const City: Template<TemplateRenderProps> = ({
     return (
       <>
         <div className="w-full sm:w-1/2 xl:w-1/3 px-[15px]">
-          <div className="near-location" style={{}}>
-            <h4>
-              <Link
-                eventName={"Location detail"}
-                key={entity.slug}
-                href={`/${detailPageUrl}`}
-              >
-                {entity.name}
-              </Link>
-            </h4>
+          <div className="near-location">
+            <div className="city-page-card flex space-x-2">
+              <div className="icon text-black relative">
+                {" "}
+                <img
+                  className=" "
+                  src={locationsvg}
+                  width="20"
+                  height="20"
+                  alt={""}
+                />
+              </div>
+              <h2>
+                <Link
+                  eventName={"Location detail"}
+                  key={entity.slug}
+                  href={`/${detailPageUrl}`}
+                >
+                  {entity.name}
+                </Link>
+              </h2>
+            </div>
             <div className="store-address">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="21.23"
-                height="30"
-                viewBox="0 0 21.23 30"
-              >
-                <g transform="translate(0 0)">
-                  <path
-                    d="M6.789,23.576c1.079,1.719,2.246,3.8,3.4,5.825.427.747.813.859,1.326-.027,1.113-1.931,2.207-3.931,3.359-5.8,3.5-5.661,9.223-11.181,4.67-18.8C15.5-1.987,4.5-1.265,1.216,5.034c-3.769,7.219,2.117,13.039,5.574,18.542Z"
-                    fill="#d61a0c"
-                    fillRule="evenodd"
-                  />
-                  <path
-                    d="M10.61,6.247a4.116,4.116,0,1,1-4.116,4.116A4.117,4.117,0,0,1,10.61,6.247Z"
-                    fill="#a60d0d"
-                    fillRule="evenodd"
-                  />
-                </g>
-              </svg>
               <p>
                 {entity.address.line1 ? entity.address.line1 : ""},
                 {entity.address.line2 ? entity.address.line2 : ""}
@@ -355,26 +352,17 @@ const City: Template<TemplateRenderProps> = ({
 
             {entity.mainPhone && (
               <div className="store-Pizza">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="23.987"
-                  height="23.987"
-                  viewBox="0 0 23.987 23.987"
-                >
-                  <path
-                    d="M19.64,17.328c-.617,1.876-3.036,2.812-4.764,2.656A15.194,15.194,0,0,1,8,17.14,22.652,22.652,0,0,1,.885,8.652C-.22,6.3-.468,3.411,1.176,1.268A2.827,2.827,0,0,1,3.429,0C4.8-.063,4.992.721,5.463,1.943c.351.913.819,1.845,1.08,2.792C7.032,6.5,5.321,6.575,5.105,8.019c-.133.911.969,2.132,1.468,2.781A13.473,13.473,0,0,0,10.051,14c.76.479,1.984,1.341,2.853.865,1.339-.733,1.213-2.991,3.084-2.227a30.12,30.12,0,0,1,2.833,1.463c1.431.769,1.364,1.567.819,3.223h0"
-                    transform="translate(4.5) rotate(13)"
-                    fill="#d61a0c"
-                    fillRule="evenodd"
-                  />
-                </svg>
+                <div className="phoneno flex space-x-2">
+                  <img src={Phonesvg} alt={""} />
+                  <span>Telephone</span>
+                </div>
                 <p>
                   <Link
                     eventName={"PhoneNumber"}
                     href={`tel:${entity.mainPhone}`}
                     rel="noopener noreferrer"
                   >
-                    {entity.mainPhone}
+                    {formatPhoneNumber(entity.mainPhone)}
                   </Link>
                 </p>
               </div>
@@ -618,26 +606,22 @@ const City: Template<TemplateRenderProps> = ({
                     ></BreadCrumbs>
                   </div>
                 </div>
+                <div className="image-text image-color">
+                  <h2 className="" style={{ textAlign: "center" }}>
+                    Available Services in {name},{" "}
+                    {document.dm_directoryParents[2].name},{" "}
+                    {document.dm_directoryParents[1].name}{" "}
+                  </h2>
+                </div>
               </div>
             </div>
             <div className="header-title ">
               {/* <Herobanner c_bannerTitle={_site.c_bannerTitle}></Herobanner> */}
             </div>
             <div>
-              <h1 className="sec_heading mt-12" style={{ textAlign: "center" }}>
-                Available Services in {name},{" "}
-                {document.dm_directoryParents[2].name},{" "}
-                {document.dm_directoryParents[1].name}{" "}
-              </h1>
-              <div
-                className="directory-country nearby-sec"
-                style={{ backgroundColor: "lightcyan" }}
-              >
+              <div className="directory-country nearby-sec">
                 <div className="container">
-                  <div
-                    className="flex  flex-wrap justify-center -mx-[15px]"
-                    style={{}}
-                  >
+                  <div className="flex  flex-wrap justify-center -mx-[15px]">
                     {childrenDivs}
                   </div>
                 </div>

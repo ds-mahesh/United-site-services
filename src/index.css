@@ -892,7 +892,7 @@ nav[aria-label="Pagination"] button:disabled{@apply cursor-not-allowed text-opac
 /* services sec */
 .services-sec{@apply bg-white w-full pt-8 pb-16 md:py-9 }
 .sec-title{@apply mb-4 md:mb-7}
-.sec-title h2, .sec-title h1{@apply text-center text-2xl font-second-main-font md:text-[1.75rem] text-red  }
+.sec-title h2, .sec-title h1{@apply text-center text-2xl font-second-main-font md:text-[1.75rem]  }
 .sec-title h1{@apply mb-5}
 .services-inner{@apply flex flex-wrap  }
 .services-inner .service-icon{@apply  m-0 }
@@ -1030,10 +1030,19 @@ nav[aria-label="Pagination"] button:disabled{@apply cursor-not-allowed text-opac
 .content-list{  @apply pt-7 md:pt-[3.75rem] pb-4 md:pb-8 bg-button-light bg-opacity-25 }
 .content-list .container{  @apply px-4;}
 .region-list{  @apply flex flex-wrap -mx-2 lg:-mx-4}
-.region-list .storelocation-category{  @apply w-1/2 md:w-1/3 lg:w-1/4 px-2 lg:px-4 mb-4 lg:mb-8}
+/* .region-list .storelocation-category{  @apply w-1/2 md:w-1/3 lg:w-1/4 px-2 lg:px-4 mb-4 lg:mb-8} */
+.region-list .storelocation-category{  @apply w-1/2 md:w-1/3 lg:w-1/4 }
 .region-list .storelocation-category a{  @apply p-6 text-center shadow-[0_3px_5px_rgba(243,243,243,1)] bg-white rounded-md w-full inline-block align-top leading-6 transition-all duration-300 text-sm md:text-base hover:bg-red hover:text-white h-full flex items-center justify-center
 }
-.region-list .storelocation-category  {border: 1px solid #00539b; }
+.region-list .storelocation-category a{
+    border: 1px solid black;
+    width: 180px;
+    height: 10px;
+}
+.region-list .storelocation-category {
+  padding: 10px 0px;
+}
+/* .region-list .storelocation-category  {border: 1px solid #00539b; } */
 .content-list.city-page{  @apply pb-10 md:pb-14}
 .city-location .button{  @apply px-6}
 .content-list .c_location{@apply px-2.5 lg:px-4 w-full sm:w-1/2 lg:w-1/3 mb-4 md:mb-8}
@@ -1068,6 +1077,31 @@ nav[aria-label="Pagination"] button:disabled{@apply cursor-not-allowed text-opac
 .city-location .button-bx .btn.notHighligh{@apply w-full md:w-[48%] bg-white justify-start  border-none text-black underline  }
 .city-location .button-bx .btn + .btn{@apply mt-2 md:mt-0}
 .city-location .button-bx .btn:hover svg{@apply !fill-red }
+
+.city-page-card h2{
+    font-size: 1.375rem;
+    --tw-text-opacity: 1;
+    color: rgb(56 56 56 / var(--tw-text-opacity));
+    color: #00539b;
+    font-family: 'Roboto';
+    font-weight: 600;
+   
+}
+.city-page-card .icon img{
+  padding-top: 4px;
+}
+.near-location p{
+  padding: 8px 25px;
+  font-family: 'Roboto';
+  font-size: 16px;
+  font-weight: 500;
+}
+.near-location .store-Pizza .phoneno span{
+    color: #00539b;
+    font-family: 'Roboto';
+    font-size: 18px;
+    font-weight: 600;
+}
 
 .CookieConsent{
   @apply rounded-tl-md rounded-tr-md !bg-black bg-opacity-80 max-w-[26.25rem] !left-1/2 transform -translate-x-1/2 text-center p-3.5 text-sm

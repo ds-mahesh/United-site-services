@@ -293,15 +293,16 @@ const region: Template<TemplateRenderProps> = ({
                 ></BreadCrumbs>
               </div>
             </div>
+            <div className="image-text image-color">
+              <h2 style={{ textAlign: "center" }}>{name}</h2>
+            </div>
           </div>
         </div>
         {/* <div className="location-dtl">     <Banner name={c_bannerHeading?c_bannerHeading:name} c_bannerImage={bannerimage}  /></div> */}
 
         <div className="content-list">
           <div className="container">
-            <div className="sec-title">
-              <h2 style={{ textAlign: "center" }}>{name}</h2>
-            </div>
+            <div className="sec-title"></div>
             <ul className="region-list">{childrenDivs}</ul>
           </div>
         </div>
