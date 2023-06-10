@@ -1,21 +1,28 @@
 import { useSearchActions } from "@yext/search-headless-react";
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef } from "react";
 import * as React from "react";
 import { LocationBias, Pagination } from "@yext/search-ui-react";
 
 import { Location } from "../../types/search/locations";
 import LocationCard from "./LocationCard";
-import { AnswersHeadlessProvider } from '@yext/answers-headless-react';
+import { AnswersHeadlessProvider } from "@yext/answers-headless-react";
 import { GoogleMaps } from "./GoogleMaps";
 import { useSearchState, Result } from "@yext/search-headless-react";
 import Geocode from "react-geocode";
 import Address from "../commons/Address";
-import PerfectScrollbar from 'react-perfect-scrollbar';
-import 'react-perfect-scrollbar/dist/css/styles.css';
+import PerfectScrollbar from "react-perfect-scrollbar";
+import "react-perfect-scrollbar/dist/css/styles.css";
 import $ from "jquery";
 import Banner from "../locationDetail/banner";
 import LoadingSpinner from "../commons/LoadingSpinner";
-import { breadcrumbhome, center_latitude, center_longitude, googleApikey, search_icn, UseMylocationsvg } from "../../../sites-global/global";
+import {
+  breadcrumbhome,
+  center_latitude,
+  center_longitude,
+  googleApikey,
+  search_icn,
+  UseMylocationsvg,
+} from "../../../sites-global/global";
 import { StaticData } from "../../../sites-global/staticData";
 
 import FilterSearch from "../locatorPage/FilterSearch";
@@ -26,7 +33,7 @@ import useFetchResults from "../../hooks/useFetchResults";
 import { Link } from "@mui/material";
 import { AnswerExperienceConfig } from "../../config/answersHeadlessConfig";
 
-var params1: any = { latitude: center_latitude, longitude: center_longitude }
+var params1: any = { latitude: center_latitude, longitude: center_longitude };
 var mapzoom = 8;
 var centerLatitude = center_latitude;
 var centerLongitude = center_longitude;
@@ -36,28 +43,29 @@ const SearchLayout = (props: any): JSX.Element => {
   type FilterHandle = React.ElementRef<typeof FilterSearch>;
   const filterRef = useRef<FilterHandle>(null);
   const locationResults = useFetchResults() || [];
-  const locationinbuit = useSearchState(state => state.vertical?.results) || [];
-  const alternateresult = useSearchState(state => state.vertical?.results?.length) || 0;
+  const locationinbuit =
+    useSearchState((state) => state.vertical?.results) || [];
+  const alternateresult =
+    useSearchState((state) => state.vertical?.results?.length) || 0;
   const [displaymsg, setDisplaymsg] = useState(false);
-  const [inputvalue, setInputValue] = React.useState('');
+  const [inputvalue, setInputValue] = React.useState("");
   // const [inputvalue, setInputValue] = React.useState('');
-  const [allowlocation, setallowLocation] = React.useState('');
+  const [allowlocation, setallowLocation] = React.useState("");
   const [newparam, SetNewparam] = React.useState({
     latitude: 0,
-    longitude: 0
+    longitude: 0,
   });
   const [offset, setOffset] = React.useState(0);
   const searchActions = useSearchActions();
-  const state = useSearchState(s => s) || [];
+  const state = useSearchState((s) => s) || [];
   const [optionclick, setOptionClick] = useState(true);
 
-  const loading = useSearchState(s => s.searchStatus.isLoading);
+  const loading = useSearchState((s) => s.searchStatus.isLoading);
 
   var searchKey: any;
   var target;
 
   var firstTimeRunners = true;
-
 
   const FirstLoad = () => {
     setCheck(true);
@@ -96,70 +104,74 @@ const SearchLayout = (props: any): JSX.Element => {
     }, 3100);
   };
   const onClick = () => {
-
     if (navigator.geolocation) {
       const error = (error: any) => {
-
         if (error.code == 1) {
-          setallowLocation('Please allow your Location')
-
+          setallowLocation("Please allow your Location");
         }
       };
 
-
-      navigator.geolocation.getCurrentPosition(function (position) {
-        Geocode.setApiKey(googleApikey);
-        var inputformat = '';
-        Geocode.fromLatLng(position.coords.latitude, position.coords.longitude).then(
-          (response: any) => {
-            if (response.results[0]) {
-              filterRef.current && filterRef.current.setInputValue(response.results[0].formatted_address);
-              setallowLocation('');
+      navigator.geolocation.getCurrentPosition(
+        function (position) {
+          Geocode.setApiKey(googleApikey);
+          var inputformat = "";
+          Geocode.fromLatLng(
+            position.coords.latitude,
+            position.coords.longitude
+          ).then(
+            (response: any) => {
+              if (response.results[0]) {
+                filterRef.current &&
+                  filterRef.current.setInputValue(
+                    response.results[0].formatted_address
+                  );
+                setallowLocation("");
+              }
+            },
+            (error: any) => {
+              console.error(error);
+              setCheck(false);
             }
-          },
-          (error: any) => {
-            console.error(error);
-            setCheck(false);
-          }
-        );
+          );
 
-        let params = {
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude
-        };
+          let params = {
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
+          };
 
-        mapzoom = 3;
-        searchActions.setVertical('locations');
-        searchActions.setUserLocation(params);
-        searchActions.setOffset(0);
-        searchActions.executeVerticalQuery();
-
-      }, error, {
-        timeout: 10000,
-      });
+          mapzoom = 3;
+          searchActions.setVertical("locations");
+          searchActions.setUserLocation(params);
+          searchActions.setOffset(0);
+          searchActions.executeVerticalQuery();
+        },
+        error,
+        {
+          timeout: 10000,
+        }
+      );
     }
-  }
-
+  };
 
   const Findinput = () => {
-    let searchKey = document.getElementsByClassName('FilterSearchInput');
-    let Search = (searchKey[0].value);
+    let searchKey = document.getElementsByClassName("FilterSearchInput");
+    let Search = searchKey[0].value;
 
-    setInputValue('');
+    setInputValue("");
     if (searchKey[0].value != "") {
       getCoordinates(Search);
     }
-    console.log(locationinbuit.length, "fisttimedispaly")
+    console.log(locationinbuit.length, "fisttimedispaly");
     if (locationinbuit.length == 0) {
-      setDisplaymsg(true)
+      setDisplaymsg(true);
     } else {
       setDisplaymsg(false);
     }
-  }
+  };
 
   const handleInputValue = () => {
-    setInputValue('');
-  }
+    setInputValue("");
+  };
   const handleSetUserShareLocation = (value: any, userShareStatus: boolean) => {
     console.log(value, center_latitude, center_longitude, "value");
     setInputValue(value);
@@ -167,12 +179,10 @@ const SearchLayout = (props: any): JSX.Element => {
       setCenterLatitude(center_latitude);
       setCenterLongitude(center_longitude);
     }
-  }
-
+  };
 
   function getCoordinates(address: String) {
-    setInputValue('');
-
+    setInputValue("");
 
     setCheck(true);
     // console.log(searchActions,"searchActions")
@@ -180,68 +190,72 @@ const SearchLayout = (props: any): JSX.Element => {
     searchActions.setUserLocation(params1);
     searchActions.setOffset(0);
     searchActions.executeVerticalQuery();
-
   }
 
-  let bannerimage = props._site.c_locatorBannerImage != undefined ? props._site.c_locatorBannerImage.image.url : '';
-
+  let bannerimage =
+    props._site.c_locatorBannerImage != undefined
+      ? props._site.c_locatorBannerImage.image.url
+      : "";
 
   // const loader =
   //   isLoading ? <LoadingSpinner /> : '';
 
   const addClass = () => {
-
     document.body.setAttribute("class", "mapView");
     // setActive('')
-
-
-  }
+  };
 
   useEffect(() => {
     if (locationinbuit.length > 0) {
       setDisplaymsg(false);
     }
-  }, [locationinbuit])
+  }, [locationinbuit]);
   useEffect(() => {
-    console.log("yes rerender")
+    console.log("yes rerender");
     locationResults.map((result: any, index: number) => {
       const resultelement = document.querySelectorAll(
         `.result-list-inner-${index + 1}`
       );
       for (let index = 0; index < resultelement.length; index++) {
-        if (resultelement[index].classList.contains("active") || resultelement[index].classList.contains("fixed-hover")) {
+        if (
+          resultelement[index].classList.contains("active") ||
+          resultelement[index].classList.contains("fixed-hover")
+        ) {
           resultelement[index].classList.remove("active", "fixed-hover");
         }
       }
     });
-  }, [loading])
+  }, [loading]);
   useEffect(() => {
     if (firstTimeRunners) {
       firstTimeRunners = false;
       // searchActions.resetFacets();
       FirstLoad();
     }
-  }, [])
+  }, []);
 
   return (
     <>
-
       {/* {loader} */}
       <div className="breadcrumb">
         <div className="container-custom">
           <ul>
             <li>
-              <a href="#" className="home"> Home</a>
+              <a href="#" className="home">
+                {" "}
+                Home
+              </a>
             </li>
             <li>{StaticData.locator_breadcrumb}</li>
           </ul>
-
         </div>
       </div>
       <div className="locator-main">
-        {allowlocation.length > 0 ?
+        {allowlocation.length > 0 ? (
           <div className="for-allow">{allowlocation}</div>
-          : ''}
+        ) : (
+          ""
+        )}
         <div className="search-bx">
           <div className="uselocation-searchbar">
             <div className="main-sec-search-head">
@@ -250,9 +264,20 @@ const SearchLayout = (props: any): JSX.Element => {
                   <h1 className="">{StaticData.FindLocationtext}</h1>
                 </div>
                 <div className="use-mylocation">
-                  <button className="useMyLocation" title="Search using your current location!" id="useLocation" onClick={onClick}>
-                    <span className="icon" dangerouslySetInnerHTML={{ __html: UseMylocationsvg }} />
-                    <span className="underline hover:no-underline"> {StaticData.Usemylocation}</span>
+                  <button
+                    className="useMyLocation"
+                    title="Search using your current location!"
+                    id="useLocation"
+                    onClick={onClick}
+                  >
+                    <span
+                      className="icon"
+                      dangerouslySetInnerHTML={{ __html: UseMylocationsvg }}
+                    />
+                    <span className="underline hover:no-underline">
+                      {" "}
+                      {StaticData.Usemylocation}
+                    </span>
                   </button>
                 </div>
               </div>
@@ -265,7 +290,7 @@ const SearchLayout = (props: any): JSX.Element => {
                   customCssClasses={{
                     filterSearchContainer: "m-2 w-full",
                     inputElement: "FilterSearchInput pr-[90px]",
-                    optionsContainer: "options"
+                    optionsContainer: "options",
                   }}
                   inputvalue={inputvalue}
                   setSearchInputValue={setInputValue}
@@ -275,17 +300,14 @@ const SearchLayout = (props: any): JSX.Element => {
                     {
                       entityType: "location",
                       fieldApiName: "address.line1",
-
                     },
                     {
                       entityType: "location",
                       fieldApiName: "address.postalCode",
-
                     },
                     {
                       entityType: "location",
                       fieldApiName: "name",
-
                     },
                     // {
                     //   entityType: "location",
@@ -295,15 +317,12 @@ const SearchLayout = (props: any): JSX.Element => {
                     {
                       entityType: "location",
                       fieldApiName: "address.region",
-
                     },
                     {
                       entityType: "location",
                       fieldApiName: "address.countryCode",
-
                     },
                   ]}
-
                   handleInputValue={handleInputValue}
                   handleSetUserShareLocation={handleSetUserShareLocation}
                 />
@@ -311,7 +330,9 @@ const SearchLayout = (props: any): JSX.Element => {
                 <button
                   className="search-btn"
                   aria-label="Search bar icon"
-                  id="search-location-button" onClick={Findinput}>
+                  id="search-location-button"
+                  onClick={Findinput}
+                >
                   <span dangerouslySetInnerHTML={{ __html: search_icn }} />
                 </button>
               </div>
@@ -326,12 +347,24 @@ const SearchLayout = (props: any): JSX.Element => {
         </div>
         <div className="mobile-btns">
           <div className="button-bx">
-
-            <a className="btn listBtn" href="javascript:void(0);" onClick={() => {
-              document.body.classList.remove('mapView')
-
-            }}> List View</a>
-            <a className="btn mapBtn" href="javascript:void(0);" onClick={addClass}> Map View</a>
+            <a
+              className="btn listBtn"
+              href="javascript:void(0);"
+              onClick={() => {
+                document.body.classList.remove("mapView");
+              }}
+            >
+              {" "}
+              List View
+            </a>
+            <a
+              className="btn mapBtn"
+              href="javascript:void(0);"
+              onClick={addClass}
+            >
+              {" "}
+              Map View
+            </a>
           </div>
         </div>
         <div className=" map-section ">
@@ -346,11 +379,8 @@ const SearchLayout = (props: any): JSX.Element => {
         </div>
 
         <div className="left-listing">
-
-          <PerfectScrollbar >
-
+          <PerfectScrollbar>
             <div>
-
               <VerticalResults
                 displayAllOnNoResults={false}
                 CardComponent={LocationCard}
@@ -358,27 +388,37 @@ const SearchLayout = (props: any): JSX.Element => {
                 customCssClasses={{
                   container:
                     "result-list flex flex-col scroll-smooth  overflow-auto",
-
                 }}
-              // CardComponent={LocationCard}
+                // CardComponent={LocationCard}
               />
             </div>
           </PerfectScrollbar>
-          {locationinbuit && locationinbuit.length <= 0 ?
-                <div className="browse-dir">
-                  <a className="underline " href='/gb.html'>Use the search above or <span className="font-second-main-font"> browse our directory</span></a>
-                </div> : ''}
-              <div className="button-bx">
-                <ViewMore className={" btn notHighlight lg:!w-[132%] !mb-2 button view-more"} idName={"view-more-button"} buttonLabel={"View More"} />
-              </div>
+          {locationinbuit && locationinbuit.length <= 0 ? (
+            <div className="browse-dir">
+              <a className="underline " href="/gb.html">
+                Use the search above or{" "}
+                <span className="font-second-main-font">
+                  {" "}
+                  browse our directory
+                </span>
+              </a>
+            </div>
+          ) : (
+            ""
+          )}
+          <div className="button-bx">
+            <ViewMore
+              className={
+                " btn notHighlight lg:!w-[132%] !mb-2 button view-more"
+              }
+              idName={"view-more-button"}
+              buttonLabel={"View More"}
+            />
+          </div>
         </div>
       </div>
-
-
     </>
   );
 };
 
 export default SearchLayout;
-
-

@@ -31,12 +31,18 @@ import {
   GetHeadConfig,
   HeadConfig,
 } from "@yext/pages";
+import {
+  favicon,
+  regionNames,
+  stagingBaseurl,
+} from "../../sites-global/global";
 // import { stagingBaseUrl } from "../config/globalConfig";
 import { JsonLd } from "react-schemaorg";
 import PageLayout from "../components/layouts/PageLayout";
 import BreadCrumbs from "../components/layouts/Breadcrumb";
 import { formatPhoneNumber } from "react-phone-number-input";
-// import Herobanner from "../components/commons/Herobanner";
+import OpenClose from "../components/commons/openClose";
+
 var currentUrl = "";
 export const config: TemplateConfig = {
   stream: {
@@ -65,19 +71,8 @@ export const config: TemplateConfig = {
       "dm_directoryChildren.mainPhone",
       // "dm_directoryChildren.what3WordsAddress",
       "dm_directoryChildren.yextDisplayCoordinate",
-      // "c_globalData.c_headerLinks1",
-      // "c_globalData.c_footerLinks",
-      // "c_globalData.facebookPageUrl",
-      // "c_globalData.twitterHandle",
-      // "c_globalData.instagramHandle",
-      // "c_globalData.address",
-      // "c_globalData.c_phoneNumber",
-      // "c_globalData.c_companyrn",
-      // "c_globalData.c_tikTok",
-      //seo section
-      // "c_canonical",
-      // "c_metaDescription",
-      // "c_metaTitle",
+      // "timezone",
+      // "hours",
     ],
     localization: {
       locales: ["en"],
@@ -101,7 +96,7 @@ let slugString = "";
 // };
 export const getPath: GetPath<TemplateProps> = ({ document }) => {
   var url: any = "";
-  document.dm_directoryParents.map((i: any) => {
+  document.dm_directoryParents.map((i: any, index: number) => {
     if (i.meta.entityType.id == "ce_country") {
       url = `${i.slug}`;
     } else if (i.meta.entityType.id == "ce_region") {
@@ -135,7 +130,7 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
         attributes: {
           rel: "icon",
           type: "image/x-icon",
-          //href: favicon,
+          href: favicon,
         },
       },
       {
@@ -265,16 +260,11 @@ const City: Template<TemplateRenderProps> = ({
     c_metaTitle,
     _site,
     __meta,
+    // timezone,
+    // hours,
   } = document;
+  // console.log(timezone, "fbsjfbfbewfesjfbesfesf");
   var address;
-  var c_companyrn;
-  var c_footerLinks;
-  var c_headerLinks1;
-  var c_phoneNumber;
-  var facebookPageUrl;
-  var instagramHandle;
-  var twitterHandle;
-  var c_tikTok;
   var sortedChildren = dm_directoryChildren.sort(function (a: any, b: any) {
     var a = a.name;
     var b = b.name;
@@ -287,167 +277,143 @@ const City: Template<TemplateRenderProps> = ({
   });
   const regionNames = new Intl.DisplayNames(["en"], { type: "region" });
 
-  const childrenDivs = dm_directoryChildren.map((entity: any) => {
-    var origin: any = null;
-    if (entity.address.city) {
-      origin = entity.address.city;
-    } else if (entity.address.region) {
-      origin = entity.address.region;
-    } else {
-      origin = entity.address.country;
-    }
-    // let key: any = Object.keys(entity.hours)[0];
-    let detailPageUrl = "";
-    var name: any = entity.name.toLowerCase();
-    var string: any = name.toString();
-    let removeSpecialCharacters = string.replace(
-      /[&\/\\#^+()$~%.'":*?<>{}!@]/g,
-      ""
-    );
-    let result: any = removeSpecialCharacters.replaceAll(" ", "-");
-    if (!entity.slug || entity.slug == "undefined") {
-      detailPageUrl = `${entity.id}`;
-    } else {
-      detailPageUrl = `${entity.slug.toString()}`;
-      console.log(detailPageUrl);
-    }
-    return (
-      <>
-        <div className="w-full sm:w-1/2 xl:w-1/3 px-[15px]">
-          <div className="near-location">
-            <div className="city-page-card flex space-x-2">
-              <div className="icon text-black relative">
-                {" "}
-                <img
-                  className=" "
-                  src={locationsvg}
-                  width="20"
-                  height="20"
-                  alt={""}
-                />
-              </div>
-              <h2>
-                <Link
-                  eventName={"Location detail"}
-                  key={entity.slug}
-                  href={`/${detailPageUrl}`}
-                >
-                  {entity.name}
-                </Link>
-              </h2>
-            </div>
-            <div className="store-address">
-              <p>
-                {entity.address.line1 ? entity.address.line1 : ""},
-                {entity.address.line2 ? entity.address.line2 : ""}
-                <br /> {entity.address.city ? entity.address.city : ""},{" "}
-                {entity.address.postalCode ? entity.address.postalCode : ""},{" "}
-                <br />
-                {entity.address.countryCode
-                  ? regionNames.of(entity.address.countryCode)
-                  : ""}{" "}
-                <br />
-              </p>
-            </div>
-
-            {entity.mainPhone && (
-              <div className="store-Pizza">
-                <div className="phoneno flex space-x-2">
-                  <img src={Phonesvg} alt={""} />
-                  <span>Telephone</span>
+  const childrenDivs = dm_directoryChildren.map(
+    (entity: any, index: number) => {
+      var origin: any = null;
+      if (entity.address.city) {
+        origin = entity.address.city;
+      } else if (entity.address.region) {
+        origin = entity.address.region;
+      } else {
+        origin = entity.address.country;
+      }
+      // let key: any = Object.keys(entity.hours)[0];
+      let detailPageUrl = "";
+      var name: any = entity.name.toLowerCase();
+      var string: any = name.toString();
+      let removeSpecialCharacters = string.replace(
+        /[&\/\\#^+()$~%.'":*?<>{}!@]/g,
+        ""
+      );
+      let result: any = removeSpecialCharacters.replaceAll(" ", "-");
+      if (!entity.slug || entity.slug == "undefined") {
+        detailPageUrl = `${entity.id}`;
+      } else {
+        detailPageUrl = `${entity.slug.toString()}`;
+        console.log(detailPageUrl);
+      }
+      return (
+        <>
+          <div className="w-full sm:w-1/2 xl:w-1/3 px-[15px]" key={index}>
+            <div className="near-location">
+              <div className="city-page-card flex space-x-2">
+                <div className="icon text-black relative">
+                  {" "}
+                  <img
+                    className=" "
+                    src={locationsvg}
+                    width="20"
+                    height="20"
+                    alt={""}
+                  />
                 </div>
-                <p>
+                <h2>
                   <Link
-                    eventName={"PhoneNumber"}
-                    href={`tel:${entity.mainPhone}`}
-                    rel="noopener noreferrer"
+                    eventName={"Location detail"}
+                    key={entity.slug}
+                    href={`/${detailPageUrl}`}
                   >
-                    {formatPhoneNumber(entity.mainPhone)}
+                    {entity.name}, {entity.address.region}{" "}
+                    {entity.address.postalCode}
                   </Link>
+                </h2>
+              </div>
+              <div className="store-address">
+                <p>
+                  {entity.address.line1 ? entity.address.line1 : ""},
+                  {entity.address.line2 ? entity.address.line2 : ""}
+                  <br /> {entity.address.city ? entity.address.city : ""},{" "}
+                  {entity.address.postalCode ? entity.address.postalCode : ""},{" "}
+                  <br />
+                  {entity.address.countryCode
+                    ? regionNames.of(entity.address.countryCode)
+                    : ""}{" "}
+                  <br />
                 </p>
               </div>
-            )}
 
-            <div className="store-link flex">
-              <Link
-                className="direction"
-                onClick={() => {
-                  getDirectionUrl(entity);
-                }}
-                href="javascript:void(0);"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M0,0H24V24H0Z" fill="none" />
-                  <path
-                    d="M22.43,10.59,13.42,1.58a2.051,2.051,0,0,0-2.83,0l-9,9a1.992,1.992,0,0,0,0,2.82l9,9a2,2,0,0,0,2.82,0l8.99-8.99A1.992,1.992,0,0,0,22.43,10.59ZM12.01,20.99l-9-9,9-9,9,9ZM8,11v4h2V12h4v2.5L17.5,11,14,7.5V10H9A1,1,0,0,0,8,11Z"
-                    fill="#fff"
-                  />
-                </svg>{" "}
-                <div
-                  className="card-img-top rounded-lg"
-                  style={{
-                    backgroundColor: "green",
-                    fontSize: "16px",
-                    paddingTop: "5px",
-                    paddingLeft: "10px",
-                    height: "30px",
-                    width: "120px",
-                  }}
-                >
-                  {" "}
-                  Get Directions
+              {entity.mainPhone && (
+                <div className="store-Pizza">
+                  <div className="phoneno flex space-x-2">
+                    <img src={Phonesvg} alt={""} />
+                    <span>Telephone</span>
+                  </div>
+                  <p>
+                    <Link
+                      eventName={"PhoneNumber"}
+                      href={`tel:${entity.mainPhone}`}
+                      rel="noopener noreferrer"
+                    >
+                      {formatPhoneNumber(entity.mainPhone)}
+                    </Link>
+                  </p>
                 </div>
-              </Link>
-              <a className="view-details" href={`/${detailPageUrl}`}>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="22.403"
-                  height="14"
-                  viewBox="0 0 22.403 14"
-                >
-                  <g transform="translate(-15.975 -106)">
-                    <path
-                      d="M27.176,120a10.337,10.337,0,0,1-4.387-1.05,16.655,16.655,0,0,1-3.481-2.249,21.287,21.287,0,0,1-3.183-3.253.742.742,0,0,1,0-.9,21.288,21.288,0,0,1,3.183-3.253,16.655,16.655,0,0,1,3.481-2.249A10.337,10.337,0,0,1,27.176,106a10.337,10.337,0,0,1,4.387,1.05,16.655,16.655,0,0,1,3.481,2.249,21.023,21.023,0,0,1,3.183,3.253.742.742,0,0,1,0,.9,21.287,21.287,0,0,1-3.183,3.253,16.655,16.655,0,0,1-3.481,2.249A10.337,10.337,0,0,1,27.176,120Zm-9.492-7c1.171,1.386,5.04,5.507,9.492,5.507S35.5,114.386,36.669,113c-1.171-1.386-5.04-5.507-9.492-5.507S18.856,111.614,17.684,113Z"
-                      transform="translate(0 0)"
-                      fill="#fff"
-                    />
-                    <path
-                      d="M187.36,190.72a3.36,3.36,0,1,1,3.36-3.36A3.364,3.364,0,0,1,187.36,190.72Zm0-5.227a1.867,1.867,0,1,0,1.867,1.867A1.866,1.866,0,0,0,187.36,185.493Z"
-                      transform="translate(-160.184 -74.36)"
-                      fill="#fff"
-                    />
-                  </g>
-                </svg>{" "}
-                <div
-                  className="card-img-top rounded-lg"
-                  style={{
-                    backgroundColor: "green",
-                    fontSize: "16px",
-                    paddingTop: "5px",
-                    paddingLeft: "10px",
-                    height: "30px",
-                    width: "120px",
+              )}
+              {/* <div className="openClosestatus detail-page closeing-div">
+              <OpenClose timezone={timezone} hours={hours} />
+            </div> */}
+              <div className="store-link flex space-x-4">
+                <a className="view-details" href={`/${detailPageUrl}`}>
+                  <div
+                    className="card-img-top rounded-lg"
+                    style={{
+                      backgroundColor: "#00539b",
+                      fontSize: "16px",
+                      paddingTop: "5px",
+                      paddingLeft: "10px",
+                      height: "30px",
+                      width: "120px",
+                      color: "#fff",
+                    }}
+                  >
+                    {" "}
+                    Branch Details
+                  </div>
+                </a>
+                <Link
+                  className="direction"
+                  onClick={() => {
+                    getDirectionUrl(entity);
                   }}
+                  href="javascript:void(0);"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
-                  {" "}
-                  View Details
-                </div>
-              </a>
+                  <div
+                    className="card-img-top rounded-lg"
+                    style={{
+                      backgroundColor: "#00539b",
+                      fontSize: "16px",
+                      paddingTop: "5px",
+                      paddingLeft: "10px",
+                      height: "30px",
+                      width: "120px",
+                      color: "#fff",
+                    }}
+                  >
+                    {" "}
+                    Get Directions
+                  </div>
+                </Link>
+              </div>
             </div>
           </div>
-        </div>
-        {/* </AnalyticsScopeProvider>
+          {/* </AnalyticsScopeProvider>
       </AnalyticsProvider> */}
-      </>
-    );
-  });
+        </>
+      );
+    }
+  );
   function getDirectionUrl(entitiy: any) {
     var origin: any = null;
     if (entitiy.address.city) {
@@ -509,14 +475,6 @@ const City: Template<TemplateRenderProps> = ({
   c_globalData &&
     c_globalData.map((i: any) => {
       address = i.address ? i.address : [];
-      c_companyrn = i.c_companyrn ? i.c_companyrn : "";
-      c_footerLinks = i.c_footerLinks ? i.c_footerLinks : [];
-      c_headerLinks1 = i.c_headerLinks1 ? i.c_headerLinks1 : [];
-      c_phoneNumber = i.phoneNumber ? i.phoneNumber : "";
-      facebookPageUrl = i.facebookPageUrl ? i.facebookPageUrl : "";
-      instagramHandle = i.instagramHandle ? i.instagramHandle : "";
-      twitterHandle = i.twitterHandle ? i.twitterHandle : "";
-      c_tikTok = i.c_tikTok ? i.c_tikTok : "";
     });
 
   let templateData = { document: document, __meta: __meta };
