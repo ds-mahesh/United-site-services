@@ -42,17 +42,19 @@ export default function Faq(props: any) {
         index === activeIndex ? " font-weight-bold  py-0 mt-2" : "";
       const ariaExpanded = index === activeIndex ? "true" : "false";
       return (
-        <AccordionItem
-          showDescription={showDescription}
-          fontWeightBold={fontWeightBold}
-          ariaExpanded={ariaExpanded}
-          background={background}
-          item={item}
-          index={index}
-          onClick={() => {
-            setActiveIndex(index);
-          }}
-        />
+        <React.Fragment key={index}>
+          <AccordionItem
+            showDescription={showDescription}
+            fontWeightBold={fontWeightBold}
+            ariaExpanded={ariaExpanded}
+            background={background}
+            item={item}
+            index={index}
+            onClick={() => {
+              setActiveIndex(index);
+            }}
+          />
+        </React.Fragment>
       );
     }
   );

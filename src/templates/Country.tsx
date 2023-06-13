@@ -119,7 +119,7 @@ const country: Template<TemplateRenderProps> = ({
     dm_directoryChildren,
   } = document;
   const childrenDivs = dm_directoryChildren
-    ? dm_directoryChildren.map((entity: any) => {
+    ? dm_directoryChildren.map((entity: any, index: number) => {
         let detlslug;
 
         if (typeof entity.dm_directoryChildren != "undefined") {
@@ -162,11 +162,13 @@ const country: Template<TemplateRenderProps> = ({
         }
 
         return (
-          <li className=" storelocation-category rounded-md">
-            <a key={entity.slug} href={detlslug}>
-              {entity.name} ({entity.dm_baseEntityCount})
-            </a>
-          </li>
+          <React.Fragment key={index}>
+            <li className=" storelocation-category rounded-md">
+              <a key={entity.slug} href={detlslug}>
+                {entity.name} ({entity.dm_baseEntityCount})
+              </a>
+            </li>
+          </React.Fragment>
         );
       })
     : null;

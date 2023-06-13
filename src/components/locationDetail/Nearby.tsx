@@ -50,7 +50,7 @@ export default function Nearby(props: any) {
           },
         }}
       > */}
-      {neabyData.map((location: any, index: Number) => {
+      {neabyData.map((location: any, index: number) => {
         // let url = "";
         // var name: any = location.data.name?.toLowerCase();
         // var region: any = location.data.address.region?.toLowerCase();
@@ -69,7 +69,7 @@ export default function Nearby(props: any) {
 
         if (index > 0) {
           return (
-            <>
+            <React.Fragment key={index}>
               {/* <SplideSlide key={index}> */}
               <div className="nearby-card">
                 <div className="location-name-miles icon-row flex space-x-1">
@@ -179,7 +179,7 @@ export default function Nearby(props: any) {
                 </div>
               </div>
               {/* </SplideSlide> */}
-            </>
+            </React.Fragment>
           );
         }
       })}

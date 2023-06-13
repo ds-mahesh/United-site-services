@@ -303,7 +303,7 @@ const City: Template<TemplateRenderProps> = ({
         console.log(detailPageUrl);
       }
       return (
-        <>
+        <React.Fragment key={index}>
           <div className="w-full sm:w-1/2 xl:w-1/3 px-[15px]" key={index}>
             <div className="near-location">
               <div className="city-page-card flex space-x-2">
@@ -385,7 +385,7 @@ const City: Template<TemplateRenderProps> = ({
                   onClick={() => {
                     getDirectionUrl(entity);
                   }}
-                  href="javascript:void(0);"
+                  href="/"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -410,7 +410,7 @@ const City: Template<TemplateRenderProps> = ({
           </div>
           {/* </AnalyticsScopeProvider>
       </AnalyticsProvider> */}
-        </>
+        </React.Fragment>
       );
     }
   );

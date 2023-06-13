@@ -18,7 +18,7 @@ const BreadCrumbs = (props: data) => {
   var data: any = [];
   React.useEffect(() => {
     setURL(props.parents, props.baseUrl);
-    console.log(props.parents);
+    // console.log(props.parents);
   }, [setList]);
 
   const setURL = (parents: any, baseUrl: any) => {
@@ -62,7 +62,7 @@ const BreadCrumbs = (props: data) => {
               data-ya-track="Breadcrumbs"
               eventName={`Breadcrumbs`}
               rel="noopener noreferrer"
-              conversionDetails={conversionDetailsDirection}
+              conversiondetails={conversionDetailsDirection}
             >
               {" "}
               {crumb.name}
@@ -73,7 +73,7 @@ const BreadCrumbs = (props: data) => {
               data-ya-track="Breadcrumbs"
               eventName={`Breadcrumbs`}
               rel="noopener noreferrer"
-              conversionDetails={conversionDetailsDirection}
+              conversiondetails={conversionDetailsDirection}
             >
               {" "}
               {crumb.name}
@@ -97,7 +97,7 @@ const BreadCrumbs = (props: data) => {
               data-ya-track="Breadcrumbs"
               eventName={`Breadcrumbs`}
               rel="noopener noreferrer"
-              conversionDetails={conversionDetailsDirection}
+              conversiondetails={conversionDetailsDirection}
             >
               <div dangerouslySetInnerHTML={{ __html: breadcrumbhome }} />
             </Link>
@@ -117,7 +117,7 @@ const BreadCrumbs = (props: data) => {
                     data-ya-track="Breadcrumbs"
                     eventName={`Breadcrumbs`}
                     rel="noopener noreferrer"
-                    conversionDetails={conversionDetailsDirection}
+                    conversiondetails={conversionDetailsDirection}
                   >
                     {props.address.city ? props.address.city : ""}
                   </Link>

@@ -1,5 +1,4 @@
 import { Wrapper } from "@googlemaps/react-wrapper";
-// import { Result, useAnswersState } from '@yext/answers-headless-react';
 import {
   useSearchState,
   Result,
@@ -14,7 +13,7 @@ import {
 import Mapicon2 from "../../images/MGMpin.svg";
 import clustericon from "../../images/cluster.png";
 import mapimage from "../../images/map.svg";
-import Hovermap from "../../images/MGMhover1.svg"
+import Hovermap from "../../images/MGMhover1.svg";
 import Hours from "../commons/hours";
 import reactElementToJSXString from "react-element-to-jsx-string";
 import Nav from "../layouts/Nav";
@@ -26,8 +25,8 @@ import GetDirection from "../commons/GetDirection";
 import { MarkerClusterer } from "@googlemaps/markerclusterer";
 import Address from "../commons/Address";
 import Phonesvg from "../../images/phone.svg";
-import timesvg from "../../images/timericon.svg"
-import locationsvg from "../../images/location-pinnew.svg"
+import timesvg from "../../images/timericon.svg";
+import locationsvg from "../../images/location-pinnew.svg";
 import { ResultsCount } from "@yext/search-ui-react";
 import OpenClose from "../commons/openClose";
 import $ from "jquery";
@@ -121,26 +120,26 @@ function UnwrappedGoogleMaps({
 
   const refLocationResults = useRef({});
 
-  const locationResults = useSearchState(state => state.vertical?.results) || [];
+  const locationResults = useFetchResults() || [];
   refLocationResults.current = locationResults;
 
   locationResults.length > 0
     ? locationResults.map((result: any, i: number) => {
-      if (i == 0 && result) {
-        center = {
-          lat: result.rawData.yextDisplayCoordinate
-            ? result.rawData.yextDisplayCoordinate.latitude
-            : result.rawData.displayCoordinate.latitude,
-          lng: result.rawData.yextDisplayCoordinate
-            ? result.rawData.yextDisplayCoordinate.longitude
-            : result.rawData.displayCoordinate.longitude,
-        };
-      }
-    })
+        if (i == 0 && result) {
+          center = {
+            lat: result.rawData.yextDisplayCoordinate
+              ? result.rawData.yextDisplayCoordinate.latitude
+              : result.rawData.displayCoordinate.latitude,
+            lng: result.rawData.yextDisplayCoordinate
+              ? result.rawData.yextDisplayCoordinate.longitude
+              : result.rawData.displayCoordinate.longitude,
+          };
+        }
+      })
     : (center = {
-      lat: centerLatitude,
-      lng: centerLongitude,
-    });
+        lat: centerLatitude,
+        lng: centerLongitude,
+      });
 
   let info = false;
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses);
@@ -171,11 +170,11 @@ function UnwrappedGoogleMaps({
     strokeWeight: 1,
     labelOrigin: new google.maps.Point(21, 22),
   };
-  function zoomMapTo(zoomTo, centerToSet = false) {
-    currentMapZoom = map.getZoom();
+  function zoomMapTo(zoomTo: any, centerToSet: false) {
+    currentMapZoom = map?.getZoom();
     const newZoom =
       currentMapZoom > zoomTo ? currentMapZoom - 1 : currentMapZoom + 1;
-    map.setZoom(newZoom);
+    map?.setZoom(newZoom);
     if (newZoom != zoomTo && !stopAnimation)
       sleep(200).then(() => {
         zoomMapTo(zoomTo, centerToSet);
@@ -183,15 +182,14 @@ function UnwrappedGoogleMaps({
     if (newZoom == zoomTo) {
       stopAnimation = false;
       if (centerToSet) {
-        if (typeof map.panTo != "undefined") {
-          map.panTo(centerToSet);
+        if (typeof map?.panTo != "undefined") {
+          map?.panTo(centerToSet);
         } else {
-          map.setCenter(centerToSet);
+          map?.setCenter(centerToSet);
         }
       }
     }
   }
-
   const bounds = new google.maps.LatLngBounds();
   const markers1 = useRef<google.maps.Marker[]>([]);
   const usermarker = useRef<google.maps.Marker[]>([]);
@@ -202,6 +200,7 @@ function UnwrappedGoogleMaps({
   // function getCoordinates(address:String){
 
   const userlat = useSearchState((s) => s.location.locationBias) || [];
+  // console.log(userlat, "maheshchandprajapat");
   const iplat = userlat.latitude;
   const iplong = userlat.longitude;
   const position = {
@@ -211,7 +210,7 @@ function UnwrappedGoogleMaps({
   const Usermarker1 = new google.maps.Marker({
     position,
     map,
-    icon: UserMarker
+    icon: UserMarker,
   });
   usermarker.current.push(Usermarker1);
 
@@ -219,7 +218,7 @@ function UnwrappedGoogleMaps({
     if (mapMarkerClusterer) {
       mapMarkerClusterer.clearMarkers();
     }
-  } catch (e) { }
+  } catch (e) {}
   let i = 0;
   for (const result of locationResults) {
     i++;
@@ -278,7 +277,6 @@ function UnwrappedGoogleMaps({
         })
       );
     } else if (markers1.current.length > 0 && map && check && hover) {
-
       setTimeout(function () {
         const bounds = new google.maps.LatLngBounds();
 
@@ -318,7 +316,7 @@ function UnwrappedGoogleMaps({
       if (!info) {
         markers1.current[i].setIcon(Hovermap);
       }
-      locationResults.map((result, index) => {
+      locationResults.map((result: any, index: number) => {
         if (i == index) {
           const resultelement = document.querySelectorAll(
             `.result-list-inner-${index + 1}`
@@ -328,7 +326,7 @@ function UnwrappedGoogleMaps({
             resultelement[index].classList.add("fixed-hover");
           }
           const position = getPosition(locationResults[index]);
-          map.setCenter(position);
+          map?.setCenter(position);
           Infowindow(i, result);
           scrollToRow(index);
         }
@@ -360,7 +358,7 @@ function UnwrappedGoogleMaps({
       setHover(true);
       info = false;
       infoWindow.current.close();
-      locationResults.map((result, index) => {
+      locationResults.map((result: any, index: number) => {
         const resultelement = document.querySelectorAll(
           `.result-list-inner-${index + 1}`
         );
@@ -377,7 +375,7 @@ function UnwrappedGoogleMaps({
   }
 
   const hours = (result: any) => {
-    return <Hours hours={result} c_specific_day={undefined} />;  //fixed error
+    return <Hours hours={result} c_specific_day={undefined} />; //fixed error
   };
   function addActiveGrid(index: any) {
     const elements = document.querySelectorAll(".result");
@@ -439,7 +437,7 @@ function UnwrappedGoogleMaps({
             }
             $(".result").removeClass("fixed-hover");
             // console.log('refLocationResults', refLocationResults);
-            refLocationResults.current.map((result, i) => {
+            refLocationResults.current.map((result: any, i: number) => {
               if (i == index) {
                 setHover(false);
                 isHover = false;
@@ -448,7 +446,7 @@ function UnwrappedGoogleMaps({
                 }
                 document
                   .querySelectorAll(".result")
-                [index].classList.add("fixed-hover");
+                  [index].classList.add("fixed-hover");
                 addActiveGrid(index);
                 const position = {
                   lat: result.rawData.yextDisplayCoordinate
@@ -502,44 +500,71 @@ function UnwrappedGoogleMaps({
             {/* <div className="icon"> <img className=" " src={mapimage} width="20" height="20"
         alt="" /></div> */}
             <div className="icon-name flex space-x-2">
-              <div className="icon text-black relative"> <img className=" " src={locationsvg} width="20" height="20"
-                alt={''} />
+              <div className="icon text-black relative">
+                {" "}
+                <img
+                  className=" "
+                  src={locationsvg}
+                  width="20"
+                  height="20"
+                  alt={""}
+                />
                 {/* <span className="map-count">D</span> */}
               </div>
               <h2>
-                <a className="inline-block notHighlight" href={`/${result.rawData.id}`}>
-                  {result.rawData.name}  {result.rawData.address.region}  {result.rawData.address.postalCode}
+                <a
+                  className="inline-block notHighlight"
+                  href={`/${result.rawData.id}`}
+                >
+                  {result.rawData.name} {result.rawData.address.region}{" "}
+                  {result.rawData.address.postalCode}
                 </a>
               </h2>
             </div>
             <div className="main-distance">
-            {result.distance ? (
-              <div className="distance">
-                {metersToMiles(result.distance ?? 0)}{" "}
-                <span>{StaticData.miles}</span>
-              </div>
-            ) : (
-              ""
-            )}
+              {result.distance ? (
+                <div className="distance">
+                  {metersToMiles(result.distance ?? 0)}{" "}
+                  <span>{StaticData.miles}</span>
+                </div>
+              ) : (
+                ""
+              )}
             </div>
           </div>
 
           <div className="content-col info-window-content">
             <Address address={result.rawData.address} />
           </div>
-          {result.rawData.mainPhone ?
+          {result.rawData.mainPhone ? (
             <div className="icon-row">
-              <div className="icon"> <img className=" " src={Phonesvg} width="20" height="20" alt="" />
+              <div className="icon">
+                {" "}
+                <img
+                  className=" "
+                  src={Phonesvg}
+                  width="20"
+                  height="20"
+                  alt=""
+                />
               </div>
               <div className="content-col">
                 <h6>Telephone</h6>
-                <a id="address" className="notHighlight" href={`tel:${result.rawData.mainPhone}`}>
-                {formatPhoneNumber(result.rawData.mainPhone)}</a>
+                <a
+                  id="address"
+                  className="notHighlight"
+                  href={`tel:${result.rawData.mainPhone}`}
+                >
+                  {formatPhoneNumber(result.rawData.mainPhone)}
+                </a>
               </div>
-            </div> : ''}
+            </div>
+          ) : (
+            ""
+          )}
           <div className="hours-services flex">
             <div className="timer-img ">
-              <img src={timesvg} alt={''} />
+              <img src={timesvg} alt={""} />
             </div>
             {result.rawData.hours && result.rawData.hours.reopenDate ? (
               ""
@@ -583,7 +608,11 @@ function UnwrappedGoogleMaps({
                 {StaticData.StoreDetailbtn}
               </a>
             </div>
-            <div className="getquote-cta"><a href={result.rawData.c_getQuote?.link} >{result.rawData.c_getQuote?.label}</a> </div>
+            <div className="getquote-cta">
+              <a href={result.rawData.c_getQuote?.link}>
+                {result.rawData.c_getQuote?.label}
+              </a>{" "}
+            </div>
             <div className="">
               {result.rawData.displayCoordinate ? (
                 <a
@@ -603,7 +632,9 @@ function UnwrappedGoogleMaps({
                 <a
                   data-listener="false"
                   data-latitude={result.rawData.yextDisplayCoordinate.latitude}
-                  data-longitude={result.rawData.yextDisplayCoordinate.longitude}
+                  data-longitude={
+                    result.rawData.yextDisplayCoordinate.longitude
+                  }
                   data-city={result.rawData.address.city}
                   data-country={result.rawData.address.countryCode}
                   data-region={result.rawData.address.region}

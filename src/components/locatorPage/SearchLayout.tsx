@@ -1,7 +1,11 @@
 import { useSearchActions } from "@yext/search-headless-react";
 import { useEffect, useState, useRef } from "react";
 import * as React from "react";
-import { LocationBias, Pagination } from "@yext/search-ui-react";
+import {
+  LocationBias,
+  Pagination,
+  StandardFacets,
+} from "@yext/search-ui-react";
 
 import { Location } from "../../types/search/locations";
 import LocationCard from "./LocationCard";
@@ -181,7 +185,7 @@ const SearchLayout = (props: any): JSX.Element => {
     }
   };
 
-  function getCoordinates(address: String) {
+  function getCoordinates(address: string) {
     setInputValue("");
 
     setCheck(true);
@@ -349,7 +353,7 @@ const SearchLayout = (props: any): JSX.Element => {
           <div className="button-bx">
             <a
               className="btn listBtn"
-              href="javascript:void(0);"
+              href="/"
               onClick={() => {
                 document.body.classList.remove("mapView");
               }}
@@ -357,15 +361,17 @@ const SearchLayout = (props: any): JSX.Element => {
               {" "}
               List View
             </a>
-            <a
-              className="btn mapBtn"
-              href="javascript:void(0);"
-              onClick={addClass}
-            >
+            <a className="btn mapBtn" href="/" onClick={addClass}>
               {" "}
               Map View
             </a>
           </div>
+        </div>
+        <div>
+          {/* <StandardFacets
+            // customCssClasses={{ container: "filter-items" }}
+            defaultExpanded={true}
+          ></StandardFacets> */}
         </div>
         <div className=" map-section ">
           <GoogleMaps

@@ -4,11 +4,13 @@ const Header = (props: any) => {
   const { label, images, _site } = props;
 
   const Headermenus = props?._site?.c_headerMenus?.map((link: any, i: any) => (
-    <li>
-      <a key={i} href={link?.link}>
-        {link?.label}
-      </a>
-    </li>
+    <React.Fragment key={i}>
+      <li>
+        <a key={i} href={link?.link}>
+          {link?.label}
+        </a>
+      </li>
+    </React.Fragment>
   ));
 
   return (

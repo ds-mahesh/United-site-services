@@ -234,6 +234,7 @@ const DayRow = (props: DayRow) => {
   const holidayopenintervals: any[] = [];
   const keysFromData = holidayhours
     ? holidayhours.map((holiday: any, index: number) => {
+        <React.Fragment key={index}></React.Fragment>;
         a = [{ day: "numeric" }, { month: "long" }, { year: "numeric" }];
         s = join(new Date(holiday.date), a, " ");
         holidayDate = s;
@@ -315,20 +316,20 @@ const DayRow = (props: DayRow) => {
         <td className="dayTime">
           {Status
             ? holidayopenintervals &&
-              holidayopenintervals.map((res: any) => {
+              holidayopenintervals.map((res: any, index: number) => {
                 return res?.map((openint: any, index: any) => {
                   return (
-                    <>
+                    <React.Fragment key={index}>
                       {openint.isClosed ? (
-                        <div className="time-group" key={index}>
+                        <div className="time-group">
                           <span className="time-b closeddot">Closed</span>
                         </div>
                       ) : (
                         openint?.openIntervals &&
                         openint.openIntervals.map((res: any, index: any) => {
                           return (
-                            <>
-                              <div className="time-group" key={index}>
+                            <React.Fragment key={index}>
+                              <div className="time-group">
                                 <span className="time-b">
                                   {OpenStausFunctions.formatTime(res.start)}
                                 </span>{" "}
@@ -337,18 +338,18 @@ const DayRow = (props: DayRow) => {
                                   {OpenStausFunctions.formatTime(res.end)}
                                 </span>
                               </div>
-                            </>
+                            </React.Fragment>
                           );
                         })
                       )}
-                    </>
+                    </React.Fragment>
                   );
                 });
               })
             : day.openIntervals &&
               day.openIntervals.map((res: any, index: number) => {
                 return (
-                  <>
+                  <React.Fragment key={index}>
                     <div className="time-group" key={index}>
                       <span className="time-b">
                         {OpenStausFunctions.formatTime(res.start)}
@@ -358,7 +359,7 @@ const DayRow = (props: DayRow) => {
                         {OpenStausFunctions.formatTime(res.end)}
                       </span>
                     </div>
-                  </>
+                  </React.Fragment>
                 );
               })}
         </td>
@@ -367,12 +368,12 @@ const DayRow = (props: DayRow) => {
         (Status ? (
           <td className="dayTime">
             {holidayopenintervals &&
-              holidayopenintervals.map((res: any) => {
-                return res.map((openint: any) => {
+              holidayopenintervals.map((res: any, index: number) => {
+                return res.map((openint: any, index: number) => {
                   return openint.openIntervals.map(
                     (res: any, index: number) => {
                       return (
-                        <>
+                        <React.Fragment key={index}>
                           <div className="time-group" key={index}>
                             <span className="time-b">
                               {OpenStausFunctions.formatTime(res.start)}
@@ -382,7 +383,7 @@ const DayRow = (props: DayRow) => {
                               {OpenStausFunctions.formatTime(res.end)}
                             </span>
                           </div>
-                        </>
+                        </React.Fragment>
                       );
                     }
                   );
